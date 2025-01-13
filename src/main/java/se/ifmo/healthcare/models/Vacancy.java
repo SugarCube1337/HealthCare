@@ -5,32 +5,33 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "persons")
-public class Person {
+@Table(name = "vacancy")
+public class Vacancy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    private String name;
+    private String position;
 
     @NotNull
-    private String surname;
+    private String requirements;
 
     @NotNull
-    private String gender;
+    private LocalDate openingDate;
 
     @NotNull
-    private LocalDateTime birthDate;
+    private Integer minSalary;
 
-    @NotNull
-    private String contactInfo;
+    private String status;
 
-
+    private String typeOfEmployment;
 }
+
+
