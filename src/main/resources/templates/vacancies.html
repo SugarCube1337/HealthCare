@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Vacancies</title>
+</head>
+<body>
+<h1>Available Vacancies</h1>
+<table border="1">
+  <thead>
+  <tr>
+    <th>Position</th>
+    <th>Requirements</th>
+    <th>Opening Date</th>
+    <th>Min Salary</th>
+    <th>Details</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="vacancy : ${vacancies}">
+    <td th:text="${vacancy.position}"></td>
+    <td th:text="${vacancy.requirements}"></td>
+    <td th:text="${vacancy.openingDate}"></td>
+    <td th:text="${vacancy.minSalary}"></td>
+    <td><a th:href="@{/vacancies/{id}(id=${vacancy.id})}">View Details</a></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

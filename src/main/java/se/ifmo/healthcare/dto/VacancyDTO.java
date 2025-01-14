@@ -1,5 +1,8 @@
 package se.ifmo.healthcare.dto;
 
+import lombok.Data;
+
+@Data
 
 public class VacancyDTO {
     public Long id;

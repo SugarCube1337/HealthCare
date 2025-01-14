@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Register</title>
+</head>
+<body>
+<h1>Register as Candidate</h1>
+<form th:action="@{/register}" th:object="${candidate}" method="post">
+  <label for="name">Name:</label>
+  <input type="text" id="name" th:field="*{person.name}" required /><br/>
+
+  <label for="surname">Surname:</label>
+  <input type="text" id="surname" th:field="*{person.surname}" required /><br/>
+
+  <label for="gender">Gender:</label>
+  <select id="gender" th:field="*{gender}">
+    <option value="M">Male</option>
+    <option value="F">Female</option>
+  </select><br/>
+  <!-- Скрытое поле для правильного формата даты -->
+  <input type="hidden" id="birthDateHidden" th:field="*{person.birthDate}" />
+  <input type="text" id="birthDate" placeholder="dd-MM-yyyy" required /><br/>
+  <label for="contactInfo">Contact Info:</label>
+  <input type="text" id="contactInfo" th:field="*{person.contactInfo}" required /><br/>
+
+  <label for="wantPosition">Desired Position:</label>
+  <input type="text" id="wantPosition" th:field="*{wantPosition}" required /><br/>
+
+  <label for="qualification">Qualification:</label>
+  <input type="text" id="qualification" th:field="*{qualification}" required /><br/>
+
+  <label for="experience">Experience (years):</label>
+  <input type="number" id="experience" th:field="*{experience}" required /><br/>
+
+  <button type="submit">Register</button>
+</form>
+<script>
+  document.querySelector('form').addEventListener('submit', function(event) {
+    var birthDateInput = document.getElementById("birthDate");
+    var birthDateHiddenInput = document.getElementById("birthDateHidden");
+
+    var dateValue = birthDateInput.value;
+    if (dateValue) {
+      // Разделить дату по формату dd-MM-yyyy
+      var parts = dateValue.split("-");
+      if (parts.length === 3) {
+        // Переформатировать в yyyy-MM-dd
+        var formattedDate = parts[2] + "-" + parts[1] + "-" + parts[0];
+        birthDateHiddenInput.value = formattedDate; // Присваиваем скрытому полю
+      }
+    }
+  });
+</script>
+</body>
+
+</html>
+
+

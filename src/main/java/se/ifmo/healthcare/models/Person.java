@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -27,7 +28,7 @@ public class Person {
     private String gender;
 
     @NotNull
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
 
     @NotNull
     private String contactInfo;

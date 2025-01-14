@@ -18,6 +18,10 @@ public class Candidate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne
+    @JoinColumn(name = "person_id", nullable = false)
+    private Person person;
+
     @NotNull
     private String wantPosition;
 

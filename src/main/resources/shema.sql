@@ -12,7 +12,6 @@ CREATE TABLE Person (
                         Contact_Info TEXT
 );
 CREATE SEQUENCE healthcare.person_id_seq START 1;
-ALTER TABLE Person ALTER COLUMN Person_ID SET DEFAULT nextval('healthcare.person_id_seq');
 
 
 
@@ -20,7 +19,7 @@ ALTER TABLE Person ALTER COLUMN Person_ID SET DEFAULT nextval('healthcare.person
 CREATE TABLE Patient (
                          Patient_ID BIGSERIAL PRIMARY KEY,
                          Person_ID BIGSERIAL NOT NULL,
-                         FOREIGN KEY (Person_ID) REFERENCES Person(Person_ID)
+                         FOREIGN KEY (Person_ID) REFERENCES person(Person_ID)
 );
 
 -- Создание таблицы Diagnosis
@@ -58,7 +57,7 @@ CREATE TABLE Staff_Member (
                               Research_ID BIGSERIAL NOT NULL,
                               Position VARCHAR(100) NOT NULL,
                               Qualification VARCHAR(100) NOT NULL,
-                              FOREIGN KEY (Person_ID) REFERENCES Person(Person_ID)
+                              FOREIGN KEY (Person_ID) REFERENCES person(Person_ID)
 );
 
 -- Создание таблицы Work_With_Biomaterials
@@ -107,11 +106,13 @@ CREATE TABLE Research_Registration (
 -- Создание таблицы Candidate
 CREATE TABLE Candidate (
                            Candidate_ID BIGSERIAL PRIMARY KEY,
+                           Person_ID BIGSERIAL NOT NULL,
                            Want_Position VARCHAR(255) NOT NULL,
                            Filling_Date DATE NOT NULL,
                            Gender CHAR(1),
                            Qualification VARCHAR(100) NOT NULL,
-                           Experience INTEGER NOT NULL
+                           Experience INTEGER NOT NULL,
+                           FOREIGN KEY (Person_ID) REFERENCES person(Person_ID)
 );
 
 -- Создание таблицы Vacancy
