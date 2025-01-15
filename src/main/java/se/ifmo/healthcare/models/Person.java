@@ -30,5 +30,7 @@ public class Person {
     @NotNull
     private String contactInfo;
 
+    private LocalDate birthDate;
+
 
 }

@@ -7,6 +7,7 @@ import se.ifmo.healthcare.dto.CandidateDTO;
 import se.ifmo.healthcare.mappers.CandidateMapper;
 import se.ifmo.healthcare.models.Candidate;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,7 @@ public class CandidateService {
 
     public void createCandidate(CandidateDTO candidateDTO) {
         Candidate candidate = CandidateMapper.toEntity(candidateDTO);
+        candidate.setFillingDate(LocalDate.now());
         candidateDAO.save(candidate);
     }
 
