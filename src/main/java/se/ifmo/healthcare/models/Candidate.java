@@ -18,14 +18,14 @@ public class Candidate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 
     @NotNull
     private String wantPosition;
 
-    @NotNull
+
     private LocalDate fillingDate;
 
     @NotNull
@@ -41,4 +41,8 @@ public class Candidate {
             inverseJoinColumns = @JoinColumn(name = "vacancy_id")
     )
     private List<Vacancy> vacancies;
+
+    public Candidate() {
+        this.fillingDate = LocalDate.now();
+    }
 }

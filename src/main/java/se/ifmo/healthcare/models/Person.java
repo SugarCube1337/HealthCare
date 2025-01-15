@@ -28,9 +28,6 @@ public class Person {
     private String gender;
 
     @NotNull
-    private LocalDate birthDate;
-
-    @NotNull
     private String contactInfo;
 
 

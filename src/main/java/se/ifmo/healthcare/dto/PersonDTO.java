@@ -10,7 +10,6 @@ public class PersonDTO {
     public String name;
     public String surname;
     public String gender;
-    public LocalDate birthDate;
     public String contactInfo;
 
 }

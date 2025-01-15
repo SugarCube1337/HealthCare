@@ -15,7 +15,6 @@ public class PersonMapper {
         dto.name = person.getName();
         dto.surname = person.getSurname();
         dto.gender = person.getGender();
-        dto.birthDate = person.getBirthDate();
         dto.contactInfo = person.getContactInfo();
         return dto;
     }
@@ -27,7 +26,6 @@ public class PersonMapper {
         person.setName(dto.name);
         person.setSurname(dto.surname);
         person.setGender(dto.gender);
-        person.setBirthDate(dto.birthDate);
         person.setContactInfo(dto.contactInfo);
         return person;
     }
