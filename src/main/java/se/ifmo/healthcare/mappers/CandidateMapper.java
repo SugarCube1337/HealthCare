@@ -15,7 +15,6 @@ public class CandidateMapper {
         dto.setPerson(PersonMapper.toDTO(candidate.getPerson()));
         dto.wantPosition = candidate.getWantPosition();
         dto.fillingDate = candidate.getFillingDate().toString();
-        dto.gender = candidate.getGender();
         dto.qualification = candidate.getQualification();
         dto.experience = candidate.getExperience();
         return dto;
@@ -28,7 +27,6 @@ public class CandidateMapper {
         candidate.setPerson(PersonMapper.toEntity(dto.getPerson()));
         candidate.setWantPosition(dto.wantPosition);
         candidate.setFillingDate(LocalDate.parse(dto.fillingDate));
-        candidate.setGender(dto.gender);
         candidate.setQualification(dto.qualification);
         candidate.setExperience(dto.experience);
         return candidate;

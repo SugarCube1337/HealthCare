@@ -28,8 +28,6 @@ public class Candidate {
     @NotNull
     private LocalDate fillingDate;
 
-    private String gender;
-
     @NotNull
     private String qualification;
 
