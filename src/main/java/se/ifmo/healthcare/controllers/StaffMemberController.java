@@ -9,7 +9,7 @@ import se.ifmo.healthcare.services.StaffMemberService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/staff-members")
+@RequestMapping("/staff-members")
 public class StaffMemberController {
 
     @Autowired

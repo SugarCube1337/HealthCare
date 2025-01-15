@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class MedicalReportDTO {
-    public Long medicalReportId;
-    public StaffMemberDTO staffMember;
-    public ResearchDTO research;
-    public String result;
+    private Long medicalReportId;
+    private StaffMemberDTO staffMember;
+    private ResearchDTO research;
+    private String result;
 }

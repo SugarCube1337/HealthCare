@@ -9,7 +9,7 @@ import se.ifmo.healthcare.services.PersonService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/persons")
+@RequestMapping("/persons")
 public class PersonController {
 
     @Autowired

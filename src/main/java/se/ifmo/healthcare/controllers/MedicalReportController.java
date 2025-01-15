@@ -9,7 +9,7 @@ import se.ifmo.healthcare.services.MedicalReportService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/medical-reports")
+@RequestMapping("/medical-reports")
 public class MedicalReportController {
     @Autowired
     private MedicalReportService medicalReportService;

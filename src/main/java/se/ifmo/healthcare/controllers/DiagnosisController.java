@@ -10,7 +10,7 @@ import se.ifmo.healthcare.services.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/diagnoses")
+@RequestMapping("/diagnoses")
 public class DiagnosisController {
 
     @Autowired

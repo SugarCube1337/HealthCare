@@ -7,19 +7,19 @@ import se.ifmo.healthcare.models.MedicalReport;
 public class MedicalReportMapper {
     public static MedicalReportDTO toDTO(MedicalReport medicalReport) {
         MedicalReportDTO dto = new MedicalReportDTO();
-        dto.medicalReportId = medicalReport.getMedicalReportId();
-        dto.result = medicalReport.getResult();
-        dto.staffMember = StaffMemberMapper.toDTO(medicalReport.getStaffMember());
-        dto.research = ResearchMapper.toDTO(medicalReport.getResearch());
+        dto.setMedicalReportId(medicalReport.getMedicalReportId());
+        dto.setResult(medicalReport.getResult());
+        dto.setStaffMember(StaffMemberMapper.toDTO(medicalReport.getStaffMember()));
+        dto.setResearch(ResearchMapper.toDTO(medicalReport.getResearch()));
         return dto;
     }
 
     public static MedicalReport toEntity(MedicalReportDTO dto) {
         MedicalReport medicalReport = new MedicalReport();
-        medicalReport.setMedicalReportId(dto.medicalReportId);
-        medicalReport.setResearch(ResearchMapper.toEntity(dto.research));
-        medicalReport.setResult(dto.result);
-        medicalReport.setStaffMember(StaffMemberMapper.toEntity(dto.staffMember));
+        medicalReport.setMedicalReportId(dto.getMedicalReportId());
+        medicalReport.setResearch(ResearchMapper.toEntity(dto.getResearch()));
+        medicalReport.setResult(dto.getResult());
+        medicalReport.setStaffMember(StaffMemberMapper.toEntity(dto.getStaffMember()));
         return medicalReport;
     }
 }

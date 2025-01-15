@@ -1,14 +1,18 @@
 package se.ifmo.healthcare.dto;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
+@Getter
+@Setter
 public class BiomaterialDTO {
-    public Long biomaterialId;
-    public PatientDTO patient;
-    public String collectionDate;
-    public String type;
-    public String deliveryDate;
-    public String status;
-    public Integer storagePeriodHours;
+    private Long biomaterialId;
+    private PatientDTO patient;
+    private String collectionDate;
+    private String type;
+    private String deliveryDate;
+    private String status;
+    private Integer storagePeriodHours;
 }

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class DiagnosisDTO {
-    public Long diagnosisId;
-    public String diagnosisName;
-    public String icdCode;
+    private Long diagnosisId;
+    private String diagnosisName;
+    private String icdCode;
 }

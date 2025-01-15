@@ -11,24 +11,24 @@ public class CandidateMapper {
     public static CandidateDTO toDTO(Candidate candidate) {
         if (candidate == null) return null;
         CandidateDTO dto = new CandidateDTO();
-        dto.id = candidate.getId();
+        dto.setId(candidate.getId());
         dto.setPerson(PersonMapper.toDTO(candidate.getPerson()));
-        dto.wantPosition = candidate.getWantPosition();
-        dto.fillingDate = candidate.getFillingDate();
-        dto.qualification = candidate.getQualification();
-        dto.experience = candidate.getExperience();
+        dto.setWantPosition(candidate.getWantPosition());
+        dto.setFillingDate(candidate.getFillingDate());
+        dto.setQualification(candidate.getQualification());
+        dto.setExperience(candidate.getExperience());
         return dto;
     }
 
     public static Candidate toEntity(CandidateDTO dto) {
         if (dto == null) return null;
         Candidate candidate = new Candidate();
-        candidate.setId(dto.id);
+        candidate.setId(dto.getId());
         candidate.setPerson(PersonMapper.toEntity(dto.getPerson()));
-        candidate.setWantPosition(dto.wantPosition);
-        candidate.setQualification(dto.qualification);
-        candidate.setFillingDate(dto.fillingDate);
-        candidate.setExperience(dto.experience);
+        candidate.setWantPosition(dto.getWantPosition());
+        candidate.setQualification(dto.getQualification());
+        candidate.setFillingDate(dto.getFillingDate());
+        candidate.setExperience(dto.getExperience());
         return candidate;
     }
 }

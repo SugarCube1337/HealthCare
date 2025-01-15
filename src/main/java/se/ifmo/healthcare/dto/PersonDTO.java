@@ -6,11 +6,11 @@ import java.time.LocalDate;
 
 @Data
 public class PersonDTO {
-    public Long id;
-    public String name;
-    public String surname;
-    public String gender;
-    public String contactInfo;
-    public String birthDate;
+    private Long id;
+    private String name;
+    private String surname;
+    private String gender;
+    private String contactInfo;
+    private String birthDate;
 
 }

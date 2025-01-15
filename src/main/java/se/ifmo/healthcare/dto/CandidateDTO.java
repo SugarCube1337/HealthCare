@@ -6,10 +6,10 @@ import java.time.LocalDate;
 
 @Data
 public class CandidateDTO {
-    public Long id;
+    private Long id;
     private PersonDTO person;
-    public String wantPosition;
-    public LocalDate fillingDate;
-    public String qualification;
-    public Integer experience;
+    private String wantPosition;
+    private LocalDate fillingDate;
+    private String qualification;
+    private Integer experience;
 }

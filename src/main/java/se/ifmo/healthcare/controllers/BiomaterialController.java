@@ -11,7 +11,7 @@ import se.ifmo.healthcare.services.DiagnosisService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/biomaterials")
+@RequestMapping("/biomaterials")
 public class BiomaterialController {
     @Autowired
     private BiomaterialService biomaterialService;
@@ -29,8 +29,8 @@ public class BiomaterialController {
     }
 
     @GetMapping
-    public List<BiomaterialDTO> getAllDiagnoses() {
-        return biomaterialService.getAllDiagnoses();
+    public List<BiomaterialDTO> getAllBiomaterials() {
+        return biomaterialService.getAllBiomaterials();
     }
 
     @DeleteMapping("/{id}")

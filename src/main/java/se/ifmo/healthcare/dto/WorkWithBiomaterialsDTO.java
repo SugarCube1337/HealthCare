@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class WorkWithBiomaterialsDTO {
-    public Long workWithBiomaterialId;
-    public StaffMemberDTO staffMember;
-    public BiomaterialDTO biomaterial;
-    public String beginTime;
+    private Long workWithBiomaterialId;
+    private StaffMemberDTO staffMember;
+    private BiomaterialDTO biomaterial;
+    private String beginTime;
 }
 

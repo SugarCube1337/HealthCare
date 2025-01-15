@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class ResearchDTO {
-    public Long researchId;
-    public WorkWithBiomaterialsDTO workWithBiomaterial;
-    public String researchMethod;
-    public String technology;
-    public String date;
+    private Long researchId;
+    private WorkWithBiomaterialsDTO workWithBiomaterial;
+    private String researchMethod;
+    private String technology;
+    private String date;
 }

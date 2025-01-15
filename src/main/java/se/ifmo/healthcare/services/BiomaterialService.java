@@ -24,7 +24,7 @@ public class BiomaterialService {
         return BiomaterialMapper.toDTO(biomaterialDAO.findById(id));
     }
 
-    public List<BiomaterialDTO> getAllDiagnoses() {
+    public List<BiomaterialDTO> getAllBiomaterials() {
         return biomaterialDAO.findAll().stream()
                 .map(BiomaterialMapper::toDTO)
                 .collect(Collectors.toList());

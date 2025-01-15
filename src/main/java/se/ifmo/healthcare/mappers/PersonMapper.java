@@ -11,24 +11,24 @@ public class PersonMapper {
     public static PersonDTO toDTO(Person person) {
         if (person == null) return null;
         PersonDTO dto = new PersonDTO();
-        dto.id = person.getId();
-        dto.name = person.getName();
-        dto.surname = person.getSurname();
-        dto.gender = person.getGender();
-        dto.contactInfo = person.getContactInfo();
-        dto.birthDate = person.getBirthDate().toString();
+        dto.setId(person.getId());
+        dto.setName(person.getName());
+        dto.setSurname(person.getSurname());
+        dto.setGender(person.getGender());
+        dto.setContactInfo(person.getContactInfo());
+        dto.setBirthDate(person.getBirthDate().toString());
         return dto;
     }
 
     public static Person toEntity(PersonDTO dto) {
         if (dto == null) return null;
         Person person = new Person();
-        person.setId(dto.id);
-        person.setName(dto.name);
-        person.setSurname(dto.surname);
-        person.setGender(dto.gender);
-        person.setContactInfo(dto.contactInfo);
-        person.setBirthDate(LocalDate.parse(dto.birthDate));
+        person.setId(dto.getId());
+        person.setName(dto.getName());
+        person.setSurname(dto.getSurname());
+        person.setGender(dto.getGender());
+        person.setContactInfo(dto.getContactInfo());
+        person.setBirthDate(LocalDate.parse(dto.getBirthDate()));
         return person;
     }
 }

@@ -11,7 +11,7 @@ import se.ifmo.healthcare.services.ResearchService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/researches")
+@RequestMapping("/researches")
 public class ResearchController {
     @Autowired
     private ResearchService researchService;

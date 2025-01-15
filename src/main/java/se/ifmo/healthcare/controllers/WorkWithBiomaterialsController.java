@@ -9,7 +9,7 @@ import se.ifmo.healthcare.services.WorkWithBiomaterialsService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/works-with-biomaterials")
+@RequestMapping("/works-with-biomaterials")
 public class WorkWithBiomaterialsController {
     @Autowired
     private WorkWithBiomaterialsService workWithBiomaterialsService;
