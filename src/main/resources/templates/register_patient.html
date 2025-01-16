@@ -30,6 +30,12 @@
     <label for="contactInfo">Contact Info:</label>
     <input type="text" id="contactInfo" th:field="*{person.contactInfo}" required /><br/>
 
+    <label for="username">Username:</label>
+    <input type="text" id="username" th:field="*{user.username}" required/><br/>
+
+    <label for="password">Password:</label>
+    <input type="text" id="password" th:field="*{user.password}" required/><br/>
+
     <button type="submit">Register</button>
   </form>
 </div>

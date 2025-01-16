@@ -6,6 +6,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.NotAuthorizedException;
@@ -54,15 +55,16 @@ public class AuthService {
     }
 
 
-    public AuthenticationResponse loginUser(String username, String password, String role) throws LoginException {
+    public AuthenticationResponse loginUser(String username, String password, String role, Long userId, HttpSession session) throws LoginException {
         User user = userDAO.findByUsername(username)
                 .orElseThrow(() -> new LoginException("Invalid credentials"));
 
         if (!user.getPassword().equals(password)) {
             throw new LoginException("Invalid credentials");
         }
-
-        String token = jwtUtil.generateToken(username, password, role);
+        System.out.println(userId);
+        String token = jwtUtil.generateToken(username, role, userId);
+        session.setAttribute("jwtToken", token);
 
         return AuthenticationResponse.builder()
                 .token(token)

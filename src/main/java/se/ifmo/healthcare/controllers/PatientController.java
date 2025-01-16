@@ -1,11 +1,13 @@
 package se.ifmo.healthcare.controllers;
 
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import se.ifmo.healthcare.auth.JWTUtil;
 import se.ifmo.healthcare.dto.PatientDTO;
 import se.ifmo.healthcare.services.PatientService;
 
@@ -17,6 +19,9 @@ public class PatientController {
 
     @Autowired
     private PatientService patientService;
+
+    @Autowired
+    private JWTUtil jwtUtil;
 
     @GetMapping("/register_patient")
     public String showRegisterPage(Model model) {
@@ -30,8 +35,34 @@ public class PatientController {
         return "patient_dashboard";
     }
     @GetMapping("/patient_dashboard")
-    public String showPatientDashboard(Model model) {
-        model.addAttribute("patient", new PatientDTO());
+    public String showPatientDashboard(Model model, HttpSession session) {
+        String token = (String) session.getAttribute("jwtToken");
+        System.out.println(token);
+        if (token == null) {
+            return "redirect:/auth/login";
+        }
+
+        Claims claims = jwtUtil.extractAllClaims(token);
+        System.out.println(claims);
+        String username = claims.get("username", String.class);
+        String role = claims.get("role", String.class);
+        Long id = claims.get("id", Long.class);
+
+        System.out.println(id);
+
+        if (!"PATIENT".equals(role)) {
+            return "redirect:/auth/login";
+        }
+
+        PatientDTO patientDTO = patientService.getPatientById(id);
+        if (patientDTO == null) {
+            return "redirect:/auth/login";
+        }
+
+        model.addAttribute("patient", patientDTO);
+
+
+//        model.addAttribute("patient", new PatientDTO());
         return "patient_dashboard";
     }
 
