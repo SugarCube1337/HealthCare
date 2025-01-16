@@ -30,13 +30,8 @@ public class PatientController {
         return "patient_dashboard";
     }
     @GetMapping("/patient_dashboard")
-    public String showPatientDashboard(Model model, HttpSession session) {
-        Long id = (Long) session.getAttribute("id");
-        if (id == null) {
-            return "redirect:/404";
-        }
-        PatientDTO patientDTO = patientService.getPatientById(id);
-        model.addAttribute("patient", patientDTO);
+    public String showPatientDashboard(Model model) {
+        model.addAttribute("patient", new PatientDTO());
         return "patient_dashboard";
     }
 

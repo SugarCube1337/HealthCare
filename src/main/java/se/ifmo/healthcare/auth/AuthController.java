@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import se.ifmo.healthcare.dao.UserDAO;
 import se.ifmo.healthcare.dto.UserDTO;
 
+
 import javax.security.auth.login.LoginException;
 
 
@@ -40,7 +41,8 @@ public class AuthController {
         System.out.println(authenticationRequest.getPassword());
         System.out.println(userDAO.findById(userId).getRole());
         if (userDAO.findById(userId).getRole().equals("PATIENT")){
-            return "redirect:/patient_dashboard";
+            System.out.println("PATIENT");
+            return "redirect:/patients/patient_dashboard";
         } else if (userDAO.findById(userId).getRole().equals("STAFF")){
             return "redirect:/staff_dashboard";
         } else{
