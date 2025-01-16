@@ -12,5 +12,6 @@ public class PersonDTO {
     private String gender;
     private String contactInfo;
     private String birthDate;
+    private String role;
 
 }

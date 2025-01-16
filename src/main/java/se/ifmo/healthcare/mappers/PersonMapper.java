@@ -17,6 +17,7 @@ public class PersonMapper {
         dto.setGender(person.getGender());
         dto.setContactInfo(person.getContactInfo());
         dto.setBirthDate(person.getBirthDate().toString());
+//        dto.setRole(person.getRole());
         return dto;
     }
 
@@ -29,6 +30,7 @@ public class PersonMapper {
         person.setGender(dto.getGender());
         person.setContactInfo(dto.getContactInfo());
         person.setBirthDate(LocalDate.parse(dto.getBirthDate()));
+//        person.setRole(dto.getRole());
         return person;
     }
 }

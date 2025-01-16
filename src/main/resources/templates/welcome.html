@@ -1,21 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Healthcare System</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<header>
-    <h1>Welcome to the Healthcare System</h1>
-</header>
-<main>
-    <p>Your one-stop solution for managing healthcare data and services.</p>
-    <p><a th:href="@{/patients}">View Patients</a></p>
-    <h1>Welcome to Job Portal</h1>
-    <a href="/register">Register as Candidate</a> | <a href="/vacancies">View Vacancies</a>
-</main>
-<footer>
-    <p>&copy; 2025 Healthcare System. All rights reserved.</p>
-</footer>
+<div class="container">
+    <header>
+        <h1>Welcome to Healthcare Management System</h1>
+        <p>Select your role to proceed</p>
+    </header>
+    <main>
+        <div class="role-buttons">
+            <a href="/register_candidate" class="button">Register as Candidate</a>
+            <a href="/register/patient" class="button">Register as Patient</a>
+            <a href="/register/doctor" class="button">Register as Doctor</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Healthcare Management System</p>
+    </footer>
+</div>
 </body>
 </html>

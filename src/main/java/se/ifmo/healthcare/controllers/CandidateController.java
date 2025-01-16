@@ -2,8 +2,11 @@ package se.ifmo.healthcare.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import se.ifmo.healthcare.dto.CandidateDTO;
+import se.ifmo.healthcare.models.Candidate;
 import se.ifmo.healthcare.services.CandidateService;
 
 import java.util.List;
@@ -15,6 +18,17 @@ public class CandidateController {
     @Autowired
     private CandidateService candidateService;
 
+    @GetMapping("/register_candidate")
+    public String registerCandidatePage(Model model) {
+        model.addAttribute("candidate", new CandidateDTO());
+        return "register_candidate";
+    }
+
+    @PostMapping("/register_candidate")
+    public String registerCandidate(@ModelAttribute("candidate") CandidateDTO candidate) {
+        candidateService.createCandidate(candidate);
+        return "redirect:/vacancies";
+    }
     @PostMapping
     public ResponseEntity<String> createCandidate(@RequestBody CandidateDTO candidateDTO) {
         candidateService.createCandidate(candidateDTO);

@@ -1,40 +1,113 @@
+/* Общий стиль */
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
+    font-size: 16px;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #F7F7F7; /* Светлый серый фон */
+    color: #4B4B4B; /* Темно-серый текст */
 }
 
-header {
-    background: #4CAF50;
-    color: white;
-    padding: 1rem 0;
-    text-align: center;
-}
-
-main {
-    margin: 2rem auto;
+/* Контейнер */
+.container {
     max-width: 800px;
-    padding: 1rem;
-    background: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-footer {
+    margin: 0 auto;
+    padding: 20px;
     text-align: center;
-    padding: 1rem;
-    background: #ddd;
-    margin-top: 2rem;
 }
 
-a {
-    color: #4CAF50;
+/* Заголовок */
+header h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Кнопки ролей */
+.role-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 16px;
     text-decoration: none;
+    color: #FFFFFF;
+    border-radius: 8px;
+    background-color: #6BB9E3; /* Светло-синий */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    text-align: center;
+    min-width: 44px;
+    min-height: 44px;
 }
 
-a:hover {
-    text-decoration: underline;
+.button:hover {
+    background-color: #77B78D; /* Светло-зеленый при наведении */
+}
+
+/* Подвал */
+footer {
+    margin-top: 40px;
+    font-size: 14px;
+    color: #8B5B29; /* Теплый коричневый */
+}
+/* Форма */
+form {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #FFF5E1; /* Кремовый фон для формы */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #4B4B4B; /* Темно-серый текст */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #B2E0F7; /* Нежно-голубой */
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="file"]:focus {
+    border-color: #6BB9E3; /* Светло-синий при фокусе */
+    outline: none;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #FFFFFF;
+    background-color: #77B78D; /* Светло-зеленый */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #6BB9E3; /* Светло-синий при наведении */
 }

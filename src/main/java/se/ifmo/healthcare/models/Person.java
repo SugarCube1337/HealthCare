@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "persons")
+@Table(name = "person")
 public class Person {
 
     @Id
@@ -30,7 +30,11 @@ public class Person {
     @NotNull
     private String contactInfo;
 
+    @NotNull
     private LocalDate birthDate;
+
+
+//    private String role;
 
 
 }
