@@ -2,6 +2,7 @@ package se.ifmo.healthcare.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import se.ifmo.healthcare.services.CandidateService;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/candidates")
 public class CandidateController {
 
@@ -25,7 +26,7 @@ public class CandidateController {
     }
 
     @PostMapping("/register_candidate")
-    public String registerCandidate(@ModelAttribute("candidate") CandidateDTO candidate) {
+    public String registerCandidate(@ModelAttribute CandidateDTO candidate) {
         candidateService.createCandidate(candidate);
         return "redirect:/vacancies";
     }

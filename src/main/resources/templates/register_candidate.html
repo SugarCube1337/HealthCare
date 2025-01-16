@@ -1,57 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register as Candidate</title>
-  <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <meta charset="UTF-8">
+    <title>Register as Candidate</title>
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+
 </head>
 <body>
-<div class="container">
-  <header>
-    <h1>Candidate Registration</h1>
-  </header>
-  <main>
-    <form th:action="@{/register}" th:object="${candidate}" method="post">
-      <!-- Person Information -->
-      <fieldset>
-        <legend>Personal Information</legend>
-        <label for="name">Name:</label>
-        <input type="text" id="name" th:field="*{person.name}" required>
+<h1>Register as Candidate</h1>
+<form th:action="@{/candidates/register_candidate}" th:object="${candidate}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{person.name}" required/><br/>
 
-        <label for="surname">Surname:</label>
-        <input type="text" id="surname" th:field="*{person.surname}" required>
+    <label for="surname">Surname:</label>
+    <input type="text" id="surname" th:field="*{person.surname}" required/><br/>
 
-        <label for="gender">Gender:</label>
-        <select id="gender" th:field="*{person.gender}" required>
-          <option value="M">Male</option>
-          <option value="F">Female</option>
-          <option value="O">Other</option>
-        </select>
+    <label for="gender">Gender:</label>
+    <select id="gender" th:field="*{person.gender}">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+    </select><br/>
+    <label for="birthDate">BirthDate:</label>
+    <input type="date" id="birthDate" th:field="*{person.birthDate}" required/><br/>
 
-        <label for="birthDate">Date of Birth:</label>
-        <input type="date" id="birthDate" th:field="*{person.birthDate}" required>
+    <label for="contactInfo">Contacts:</label>
+    <input type="text" id="contactInfo" th:field="*{person.contactInfo}" required/><br/>
 
-        <label for="contactInfo">Contact Information:</label>
-        <input type="text" id="contactInfo" th:field="*{person.contactInfo}" required>
-      </fieldset>
+    <label for="wantPosition">Desired Position:</label>
+    <input type="text" id="wantPosition" th:field="*{wantPosition}" required/><br/>
 
-      <!-- Candidate Information -->
-      <fieldset>
-        <legend>Candidate Details</legend>
-        <label for="wantPosition">Desired Position:</label>
-        <input type="text" id="wantPosition" th:field="*{person.wantPosition}" required>
+    <label for="qualification">Qualification:</label>
+    <input type="text" id="qualification" th:field="*{qualification}" required/><br/>
 
-        <label for="qualification">Qualification:</label>
-        <input type="text" id="qualification" th:field="*{person.qualification}" required>
+    <label for="experience">Experience (years):</label>
+    <input type="number" id="experience" th:field="*{experience}" required/><br/>
 
-        <label for="experience">Experience (years):</label>
-        <input type="number" id="experience" th:field="*{person.experience}" required>
-      </fieldset>
-
-      <button type="submit">Register</button>
-    </form>
-  </main>
-</div>
+    <button type="submit">Register</button>
+</form>
 </body>
+
 </html>
+
+
