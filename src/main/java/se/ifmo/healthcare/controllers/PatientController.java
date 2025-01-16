@@ -25,13 +25,9 @@ public class PatientController {
     }
 
     @PostMapping("/register_patient")
-    public String registerPatient(@ModelAttribute PatientDTO patientDTO, HttpSession session) {
+    public String registerPatient(@ModelAttribute PatientDTO patientDTO) {
         patientService.createPatient(patientDTO);
-
-        // Если нужно, можно установить patientId в сессию:
-        session.setAttribute("id", patientDTO.getId()); // Предполагается, что пациент получает id после регистрации
-
-        return "redirect:/patients/patient_dashboard";
+        return "redirect:/patient_dashboard";
     }
     @GetMapping("/patient_dashboard")
     public String showPatientDashboard(Model model, HttpSession session) {
@@ -42,12 +38,6 @@ public class PatientController {
         PatientDTO patientDTO = patientService.getPatientById(id);
         model.addAttribute("patient", patientDTO);
         return "patient_dashboard";
-    }
-
-    @PostMapping("/set_patient")
-    public String setPatientIdInSession(@RequestParam Long id, HttpSession session) {
-        session.setAttribute("id", id);
-        return "redirect:/patient_dashboard";
     }
 
     @PostMapping

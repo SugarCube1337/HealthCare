@@ -1,4 +1,5 @@
 package se.ifmo.healthcare.auth;
+
 import jakarta.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,6 @@ import se.ifmo.healthcare.dto.UserDTO;
 import javax.security.auth.login.LoginException;
 
 
-
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
@@ -26,24 +26,25 @@ public class AuthController {
     private UserDAO userDAO;
 
     @GetMapping("/login")
-    public String login(Model model){
+    public String login(Model model) {
         model.addAttribute("user", new UserDTO());
         return "login";
     }
 
 
     @PostMapping("/login")
-    public Response loginUser(AuthenticationRequest authenticationRequest) {
-        try {
-            AuthenticationResponse response = authService.loginUser(authenticationRequest.getUsername(), authenticationRequest.getPassword(), userDAO.findByUsername(authenticationRequest.getUsername()).get().getRole());
-            return Response.ok(response).build();
-        } catch (LoginException e) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+    public String loginUser(AuthenticationRequest authenticationRequest) throws LoginException {
+        authService.loginUser(authenticationRequest.getUsername(), authenticationRequest.getPassword(), userDAO.findByUsername(authenticationRequest.getUsername()).get().getRole());
+        Long userId = userDAO.findUserByName(authenticationRequest.getUsername()).getId();
+        if (userDAO.findById(userId).getRole().equals("PATIENT")){
+            return "redirect:/patient_dashboard";
+        } else if (userDAO.findById(userId).getRole().equals("STAFF")){
+            return "redirect:/staff_dashboard";
+        } else{
+            return "redirect:/vacancies";
         }
+
     }
-
-
-
 
 
 }
