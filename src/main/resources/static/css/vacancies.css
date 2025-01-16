@@ -1,0 +1,75 @@
+/* vacancies.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F7F7F7;
+    margin: 0;
+    padding: 0;
+}
+
+.vacancies-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFF5E1;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #4B4B4B;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.vacancy {
+    background-color: #B2E0F7;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.vacancy h2 {
+    color: #4B4B4B;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.vacancy p {
+    color: #4B4B4B;
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+strong {
+    color: #8B5B29;
+}
+
+hr {
+    border: 1px solid #D1E7D1;
+    margin-top: 15px;
+}
+/* Кнопка отклика */
+.apply-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #77B78D; /* Зеленый цвет */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    width: 100%;
+}
+
+.apply-button:hover {
+    background-color: #6BB9E3; /* Легкий синий оттенок при наведении */
+}
+
+.apply-button:focus {
+    outline: none;
+}
