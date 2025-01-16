@@ -34,8 +34,11 @@ public class AuthController {
 
     @PostMapping("/login")
     public String loginUser(AuthenticationRequest authenticationRequest) throws LoginException {
-        authService.loginUser(authenticationRequest.getUsername(), authenticationRequest.getPassword(), userDAO.findByUsername(authenticationRequest.getUsername()).get().getRole());
         Long userId = userDAO.findUserByName(authenticationRequest.getUsername()).getId();
+        authService.loginUser(authenticationRequest.getUsername(), authenticationRequest.getPassword(), userDAO.findById(userId).getRole());
+        System.out.println(authenticationRequest.getUsername());
+        System.out.println(authenticationRequest.getPassword());
+        System.out.println(userDAO.findById(userId).getRole());
         if (userDAO.findById(userId).getRole().equals("PATIENT")){
             return "redirect:/patient_dashboard";
         } else if (userDAO.findById(userId).getRole().equals("STAFF")){

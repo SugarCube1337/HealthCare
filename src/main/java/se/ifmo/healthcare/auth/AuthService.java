@@ -58,7 +58,7 @@ public class AuthService {
         User user = userDAO.findByUsername(username)
                 .orElseThrow(() -> new LoginException("Invalid credentials"));
 
-        if (!user.getPassword().equals(hashPassword(password))) {
+        if (!user.getPassword().equals(password)) {
             throw new LoginException("Invalid credentials");
         }
 
