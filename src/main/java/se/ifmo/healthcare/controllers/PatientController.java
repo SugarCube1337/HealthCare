@@ -29,7 +29,7 @@ public class PatientController {
         patientService.createPatient(patientDTO);
 
         // Если нужно, можно установить patientId в сессию:
-        session.setAttribute("patientId", patientDTO.getId()); // Предполагается, что пациент получает id после регистрации
+        session.setAttribute("id", patientDTO.getId()); // Предполагается, что пациент получает id после регистрации
 
         return "redirect:/patients/patient_dashboard";
     }
