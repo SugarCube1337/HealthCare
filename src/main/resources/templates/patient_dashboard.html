@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Dashboard</title>
+  <link rel="stylesheet" th:href="@{/css/patient-dashboard.css}">
+</head>
+<body>
+<div class="dashboard-container">
+  <h1>Welcome, <span th:text="${patient.person.name}"></span>!</h1>
+
+  <div class="profile-section">
+    <h2>Your Profile</h2>
+    <p><strong>Name:</strong> <span th:text="${patient.person.name}"></span></p>
+    <p><strong>Surname:</strong> <span th:text="${patient.person.surname}"></span></p>
+    <p><strong>Date of Birth:</strong> <span th:text="${patient.person.birthDate}"></span></p>
+    <p><strong>Gender:</strong> <span th:text="${patient.person.gender}"></span></p>
+    <p><strong>Contact Info:</strong> <span th:text="${patient.person.contactInfo}"></span></p>
+  </div>
+
+  <div class="diagnosis-section">
+    <h2>Your Diagnoses</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Diagnosis Name</th>
+        <th>ICD Code</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="diagnosis : ${patient.diagnoses}">
+        <td th:text="${diagnosis.diagnosisName}"></td>
+        <td th:text="${diagnosis.icdCode}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="actions">
+    <a th:href="@{/patients/patient_dashboard/{patientId}(patientId=${patient.id})}" class="button">Go to Patient Dashboard</a>
+    <a href="/patients/book-appointment" class="button">Book an Appointment</a>
+    <a href="/patients/results" class="button">View Test Results</a>
+  </div>
+</div>
+</body>
+</html>

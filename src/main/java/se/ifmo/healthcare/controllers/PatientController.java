@@ -1,19 +1,54 @@
 package se.ifmo.healthcare.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import se.ifmo.healthcare.dto.PatientDTO;
 import se.ifmo.healthcare.services.PatientService;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/patients")
 public class PatientController {
 
     @Autowired
     private PatientService patientService;
+
+    @GetMapping("/register_patient")
+    public String showRegisterPage(Model model) {
+        model.addAttribute("patient", new PatientDTO());
+        return "register_patient";
+    }
+
+    @PostMapping("/register_patient")
+    public String registerPatient(@ModelAttribute PatientDTO patientDTO, HttpSession session) {
+        patientService.createPatient(patientDTO);
+
+        // Если нужно, можно установить patientId в сессию:
+        session.setAttribute("patientId", patientDTO.getId()); // Предполагается, что пациент получает id после регистрации
+
+        return "redirect:/patients/patient_dashboard";
+    }
+    @GetMapping("/patient_dashboard")
+    public String showPatientDashboard(Model model, HttpSession session) {
+        Long id = (Long) session.getAttribute("id");
+        if (id == null) {
+            return "redirect:/404";
+        }
+        PatientDTO patientDTO = patientService.getPatientById(id);
+        model.addAttribute("patient", patientDTO);
+        return "patient_dashboard";
+    }
+
+    @PostMapping("/set_patient")
+    public String setPatientIdInSession(@RequestParam Long id, HttpSession session) {
+        session.setAttribute("id", id);
+        return "redirect:/patient_dashboard";
+    }
 
     @PostMapping
     public ResponseEntity<String> createPatient(@RequestBody PatientDTO patientDTO) {

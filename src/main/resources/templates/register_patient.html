@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register as Patient</title>
+  <link rel="stylesheet" th:href="@{/css/patient-register.css}">
+</head>
+<body>
+<div class="container">
+  <h1>Register as a Patient</h1>
+  <form th:action="@{/patients/register_patient}" th:object="${patient}" method="post">
+
+    <input type="hidden" th:field="*{patientId}" /> <!-- Скрытое поле для patientId -->
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{person.name}" required /><br/>
+
+    <label for="surname">Surname:</label>
+    <input type="text" id="surname" th:field="*{person.surname}" required /><br/>
+
+    <label for="birthDate">Date of Birth:</label>
+    <input type="date" id="birthDate" th:field="*{person.birthDate}" required /><br/>
+
+    <label for="gender">Gender:</label>
+    <select id="gender" th:field="*{person.gender}">
+      <option value="M">Male</option>
+      <option value="F">Female</option>
+    </select><br/>
+
+    <label for="contactInfo">Contact Info:</label>
+    <input type="text" id="contactInfo" th:field="*{person.contactInfo}" required /><br/>
+
+    <button type="submit">Register</button>
+  </form>
+</div>
+</body>
+</html>
