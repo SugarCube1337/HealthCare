@@ -2,12 +2,15 @@ package se.ifmo.healthcare.auth;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import jakarta.enterprise.context.ApplicationScoped;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.context.annotation.ApplicationScope;
+
 
 import java.security.Key;
 import java.util.Date;
 
-@ApplicationScoped
+@Repository
+@ApplicationScope
 public class JWTUtil {
 
     private final Key secretKey = Keys.hmacShaKeyFor("dofhhvncdoshaov832239cbcdnkja12338291bhjb".getBytes());

@@ -11,10 +11,10 @@
     <form th:action="@{/auth/login}" th:object="${user}" method="post">
 
         <label for="name">Username:</label>
-        <input type="text" id="name" th:field="*{user.username}" required /><br/>
+        <input type="text" id="name" th:field="*{username}" required /><br/>
 
         <label for="surname">Password:</label>
-        <input type="text" id="surname" th:field="*{user.password}" required /><br/>
+        <input type="text" id="surname" th:field="*{password}" required /><br/>
 
         <button type="submit">Login</button>
     </form>

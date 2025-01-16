@@ -11,6 +11,7 @@ public class UserMapper {
     public static UserDTO toDTO(User user) {
         if (user == null) return null;
         UserDTO dto = new UserDTO();
+        dto.setId(user.getId());
         dto.setUsername(user.getUsername());
         dto.setPassword(user.getPassword());
         dto.setRole(user.getRole());
@@ -20,6 +21,7 @@ public class UserMapper {
     public static User toEntity(UserDTO dto) {
         if (dto == null) return null;
         User user = new User();
+        user.setId(dto.getId());
         user.setUsername(dto.getUsername());
         user.setPassword(dto.getPassword());
         user.setRole(dto.getRole());

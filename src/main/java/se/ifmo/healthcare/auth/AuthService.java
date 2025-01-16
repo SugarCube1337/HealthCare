@@ -9,19 +9,22 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.NotAuthorizedException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import se.ifmo.healthcare.dao.UserDAO;
 import se.ifmo.healthcare.models.User;
 
 import javax.security.auth.login.LoginException;
 import java.util.Optional;
 
+@Service
 @ApplicationScoped
 public class AuthService {
 
-    @Inject
+    @Autowired
     private UserDAO userDAO;
 
-    @Inject
+    @Autowired
     private JWTUtil jwtUtil;
 
 
