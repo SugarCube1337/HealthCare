@@ -12,4 +12,5 @@ public class CandidateDTO {
     private LocalDate fillingDate;
     private String qualification;
     private Integer experience;
+    private UserDTO user;
 }

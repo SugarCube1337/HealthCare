@@ -3,9 +3,11 @@ package se.ifmo.healthcare.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.ifmo.healthcare.dao.CandidateDAO;
+import se.ifmo.healthcare.dao.UserDAO;
 import se.ifmo.healthcare.dto.CandidateDTO;
 import se.ifmo.healthcare.mappers.CandidateMapper;
 import se.ifmo.healthcare.models.Candidate;
+import se.ifmo.healthcare.models.User;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,10 +19,18 @@ public class CandidateService {
     @Autowired
     private CandidateDAO candidateDAO;
 
+    @Autowired
+    private UserDAO userDAO;
+
     public void createCandidate(CandidateDTO candidateDTO) {
         Candidate candidate = CandidateMapper.toEntity(candidateDTO);
         candidate.setFillingDate(LocalDate.now());
+        User user = new User();
+        user.setUsername(candidateDTO.getUser().getUsername());
+        user.setPassword(candidateDTO.getUser().getPassword());
+        user.setRole("CANDIDATE");
         candidateDAO.save(candidate);
+        userDAO.save(user);
     }
 
     public CandidateDTO getCandidateById(Long id) {

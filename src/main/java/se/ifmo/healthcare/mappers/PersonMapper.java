@@ -4,7 +4,6 @@ import se.ifmo.healthcare.models.Person;
 import se.ifmo.healthcare.dto.PersonDTO;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class PersonMapper {
 
