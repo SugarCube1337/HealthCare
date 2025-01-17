@@ -16,6 +16,10 @@ public class VacancyService {
     @Autowired
     private VacancyDAO vacancyDAO;
 
+    public void closeVacancy(Long vacancyId) {
+        vacancyDAO.closeVacancy(vacancyId);
+    }
+
     public void createVacancy(VacancyDTO vacancyDTO) {
         Vacancy vacancy = VacancyMapper.toEntity(vacancyDTO);
         vacancyDAO.save(vacancy);

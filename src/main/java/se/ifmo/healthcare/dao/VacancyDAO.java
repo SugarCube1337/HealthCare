@@ -16,6 +16,13 @@ public class VacancyDAO {
     private EntityManager entityManager;
 
     @Transactional
+    public void closeVacancy(Long vacancyId) {
+        entityManager.createNativeQuery("CALL close_vacancy(:vacancyId)")
+                .setParameter("vacancyId", vacancyId)
+                .executeUpdate();
+    }
+
+    @Transactional
     public void save(Vacancy vacancy) {
         entityManager.persist(vacancy);
     }

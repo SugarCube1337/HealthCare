@@ -73,3 +73,26 @@ hr {
 .apply-button:focus {
     outline: none;
 }
+/* Кнопка удаления */
+.delete-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #E57373; /* Красный цвет */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.delete-button:hover {
+    background-color: #D32F2F; /* Темно-красный оттенок при наведении */
+}
+
+.delete-button:focus {
+    outline: none;
+}
