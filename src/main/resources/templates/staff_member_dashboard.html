@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Registration Dashboard</title>
+  <link rel="stylesheet" th:href="@{/css/staff-dashboard.css}">
+</head>
+<body>
+<div class="dashboard-container">
+  <header>
+    <h1>Staff Member Dashboard</h1>
+  </header>
+  <section class="profile-info">
+    <h2>Personal Information</h2>
+    <p><strong>Name:</strong> <span th:text="${staffMember.person.name}">John Doe</span></p>
+    <p><strong>Surname:</strong> <span th:text="${staffMember.person.surname}">Doe</span></p>
+    <p><strong>Birth Date:</strong> <span th:text="${staffMember.person.birthDate}">01/01/1980</span></p>
+    <p><strong>Gender:</strong> <span th:text="${staffMember.person.gender}">Male</span></p>
+    <p><strong>Contact Info:</strong> <span th:text="${staffMember.person.contactInfo}">john.doe@example.com</span></p>
+  </section>
+
+  <section class="staff-info">
+    <h2>Staff Information</h2>
+    <p><strong>Position:</strong> <span th:text="${staffMember.position}">Admin</span></p>
+    <p><strong>Qualification:</strong> <span th:text="${staffMember.qualification}">PhD in Genetics</span></p>
+    <p><strong>Research ID:</strong> <span th:text="${staffMember.researchId}">123456</span></p>
+  </section>
+
+  <section class="user-account">
+    <h2>User Account</h2>
+    <p><strong>Username:</strong> <span th:text="${staffMember.user.username}">johndoe</span></p>
+    <p><strong>Role:</strong> <span th:text="${staffMember.user.role}">Admin</span></p>
+  </section>
+
+  <div class="actions">
+    <button th:onclick="|window.location.href='@{/staff-members/edit/{id}(id=${staffMember.id})}'|">Edit Profile</button>
+    <button th:onclick="|window.location.href='@{/staff-members/delete/{id}(id=${staffMember.id})}'|">Delete Profile</button>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register as Staff Member</title>
+    <link rel="stylesheet" th:href="@{/css/register-staff.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Register as a Staff Member</h1>
+    <form th:action="@{/staff-members}" th:object="${staffMember}" method="post">
+
+        <!-- Personal Information -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{person.name}" required/><br/>
+
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" th:field="*{person.surname}" required/><br/>
+
+        <label for="birthDate">Date of Birth:</label>
+        <input type="date" id="birthDate" th:field="*{person.birthDate}" required/><br/>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" th:field="*{person.gender}">
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select><br/>
+
+        <label for="contactInfo">Contact Info:</label>
+        <input type="text" id="contactInfo" th:field="*{person.contactInfo}" required/><br/>
+
+        <!-- Staff Position -->
+        <label for="position">Position:</label>
+        <select id="position" th:field="*{position}" required>
+            <option value="Admin">Admin</option>
+            <option value="Geneticist">Geneticist</option>
+            <option value="Technician">Technician</option>
+            <option value="Laboratory Assistant">Laboratory Assistant</option>
+        </select><br/>
+
+        <label for="qualification">Qualification:</label>
+        <input type="text" id="qualification" th:field="*{qualification}" required/><br/>
+
+<!--        <label for="researchId">Research ID:</label>-->
+<!--        <input type="number" id="researchId" th:field="*{researchId}" required/><br/>-->
+
+        <!-- User Account -->
+        <label for="username">Username:</label>
+        <input type="text" id="username" th:field="*{user.username}" required/><br/>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" th:field="*{user.password}" required/><br/>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,8 +1,13 @@
 package se.ifmo.healthcare.controllers;
 
+import io.jsonwebtoken.Claims;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import se.ifmo.healthcare.auth.JWTUtil;
+import se.ifmo.healthcare.dto.PatientDTO;
 import se.ifmo.healthcare.dto.StaffMemberDTO;
 import se.ifmo.healthcare.services.StaffMemberService;
 
@@ -15,11 +20,52 @@ public class StaffMemberController {
     @Autowired
     private StaffMemberService staffMemberService;
 
-    @PostMapping
-    public ResponseEntity<String> createStaffMember(@RequestBody StaffMemberDTO staffMemberDTO) {
-        staffMemberService.createStaffMember(staffMemberDTO);
-        return ResponseEntity.ok("Staff member created successfully");
+    @Autowired
+    private JWTUtil jwtUtil;
+
+    @GetMapping("/register_staff")
+    public String showRegisterPage(Model model) {
+        model.addAttribute("staff_member", new StaffMemberDTO());
+        return "register_staff";
     }
+
+    @PostMapping("/register_staff")
+    public String registerStaff(@ModelAttribute StaffMemberDTO StaffMemberDTO) {
+        staffMemberService.createStaffMember(StaffMemberDTO);
+        return "redirect:/staff-members/staff_member_dahboard";
+    }
+    @GetMapping("/staff_dashboard")
+    public String showPatientDashboard(Model model, HttpSession session) {
+        String token = (String) session.getAttribute("jwtToken");
+        System.out.println(token);
+        if (token == null) {
+            return "redirect:/auth/login";
+        }
+
+        Claims claims = jwtUtil.extractAllClaims(token);
+        System.out.println(claims);
+        String username = claims.get("username", String.class);
+        String role = claims.get("role", String.class);
+        Long id = claims.get("id", Long.class);
+
+        System.out.println(id);
+
+        if (!"STAFF".equals(role)) {
+            return "redirect:/auth/login";
+        }
+
+        StaffMemberDTO StaffMemberDTO = staffMemberService.getStaffMemberById(id);
+        if (StaffMemberDTO == null) {
+            return "redirect:/auth/login";
+        }
+
+        model.addAttribute("staff_member", StaffMemberDTO);
+
+
+        return "staff_member_dashboard";
+    }
+
+
 
     @GetMapping("/{id}")
     public ResponseEntity<StaffMemberDTO> getStaffMemberById(@PathVariable Long id) {
