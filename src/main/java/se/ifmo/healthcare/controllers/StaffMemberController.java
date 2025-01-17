@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import se.ifmo.healthcare.auth.JWTUtil;
@@ -13,7 +14,7 @@ import se.ifmo.healthcare.services.StaffMemberService;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/staff-members")
 public class StaffMemberController {
 
@@ -25,14 +26,14 @@ public class StaffMemberController {
 
     @GetMapping("/register_staff")
     public String showRegisterPage(Model model) {
-        model.addAttribute("staff_member", new StaffMemberDTO());
+        model.addAttribute("staffMember", new StaffMemberDTO());
         return "register_staff";
     }
 
     @PostMapping("/register_staff")
     public String registerStaff(@ModelAttribute StaffMemberDTO StaffMemberDTO) {
         staffMemberService.createStaffMember(StaffMemberDTO);
-        return "redirect:/staff-members/staff_member_dahboard";
+        return "redirect:/auth/login";
     }
     @GetMapping("/staff_dashboard")
     public String showPatientDashboard(Model model, HttpSession session) {

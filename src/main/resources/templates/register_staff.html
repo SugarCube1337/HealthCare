@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <h1>Register as a Staff Member</h1>
-    <form th:action="@{/staff-members}" th:object="${staffMember}" method="post">
+    <form th:action="@{/staff-members/register_staff}" th:object="${staffMember}" method="post">
 
         <!-- Personal Information -->
         <label for="name">Name:</label>
@@ -42,10 +42,7 @@
         <label for="qualification">Qualification:</label>
         <input type="text" id="qualification" th:field="*{qualification}" required/><br/>
 
-<!--        <label for="researchId">Research ID:</label>-->
-<!--        <input type="number" id="researchId" th:field="*{researchId}" required/><br/>-->
-
-        <!-- User Account -->
+         User Account
         <label for="username">Username:</label>
         <input type="text" id="username" th:field="*{user.username}" required/><br/>
 

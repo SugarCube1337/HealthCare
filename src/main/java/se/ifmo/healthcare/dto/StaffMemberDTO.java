@@ -8,4 +8,5 @@ public class StaffMemberDTO {
     private PersonDTO person;
     private String position;
     private String qualification;
+    private UserDTO user;
 }

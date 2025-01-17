@@ -14,7 +14,8 @@ public class StaffMember {
     @Column(name = "staff_member_id")
     private Long id;
 
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 
