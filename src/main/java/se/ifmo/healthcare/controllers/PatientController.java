@@ -32,7 +32,7 @@ public class PatientController {
     @PostMapping("/register_patient")
     public String registerPatient(@ModelAttribute PatientDTO patientDTO) {
         patientService.createPatient(patientDTO);
-        return "patient_dashboard";
+        return "redirect:/patients/patient_dashboard";
     }
     @GetMapping("/patient_dashboard")
     public String showPatientDashboard(Model model, HttpSession session) {
