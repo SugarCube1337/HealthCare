@@ -32,7 +32,7 @@ public class PatientController {
     @PostMapping("/register_patient")
     public String registerPatient(@ModelAttribute PatientDTO patientDTO) {
         patientService.createPatient(patientDTO);
-        return "redirect:/patients/patient_dashboard";
+        return "redirect:/auth/login";
     }
     @GetMapping("/patient_dashboard")
     public String showPatientDashboard(Model model, HttpSession session) {
@@ -44,7 +44,7 @@ public class PatientController {
 
         Claims claims = jwtUtil.extractAllClaims(token);
         System.out.println(claims);
-        String username = claims.get("username", String.class);
+
         String role = claims.get("role", String.class);
         Long id = claims.get("id", Long.class);
 
@@ -54,7 +54,7 @@ public class PatientController {
             return "redirect:/auth/login";
         }
 
-        PatientDTO patientDTO = patientService.getPatientById(id);
+        PatientDTO patientDTO = patientService.getPatientByPersonId(id);
         if (patientDTO == null) {
             return "redirect:/auth/login";
         }

@@ -40,6 +40,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public String loginUser(AuthenticationRequest authenticationRequest, HttpSession session) throws LoginException {
+        System.out.println(authenticationRequest.getUsername());
         Long userId = userDAO.findUserByName(authenticationRequest.getUsername()).getId();
         authService.loginUser(authenticationRequest.getUsername(), authenticationRequest.getPassword(), userDAO.findById(userId).getRole(), userId, session);
         System.out.println(authenticationRequest.getUsername());

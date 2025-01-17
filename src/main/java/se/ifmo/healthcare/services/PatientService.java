@@ -36,6 +36,11 @@ public class PatientService {
         return patient == null ? null : PatientMapper.toDTO(patient);
     }
 
+    public PatientDTO getPatientByPersonId(Long id){
+        Patient patient = patientDAO.findUPatientByPersonId(id);
+        return patient == null ? null : PatientMapper.toDTO(patient);
+    }
+
     public List<PatientDTO> getAllPatients() {
         return patientDAO.findAll().stream()
                 .map(PatientMapper::toDTO)
