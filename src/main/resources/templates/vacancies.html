@@ -21,7 +21,7 @@
         <p><strong>Employment Type:</strong> <span th:text="${vacancy.typeOfEmployment}"></span></p>
 
         <!-- Кнопка отклика на вакансию -->
-        <button class="apply-button" th:onclick="'applyToVacancy(' + ${vacancy.id} + ')'" >Apply</button>
+        <button class="apply-button" onclick="applyToVacancy()">Apply</button>
 
         <button th:if="${userRole == 'ADMIN'}"
                 class="delete-button"
@@ -36,6 +36,12 @@
 </div>
 </body>
 <script>
+  // Обработчик для кнопки "Apply"
+  function applyToVacancy() {
+    alert("Ваше резюме будет рассмотрено.");
+  }
+
+  // Обработчик для кнопки "Delete"
   function deleteVacancy(vacancyId) {
     if (confirm("Are you sure you want to delete this vacancy?")) {
       fetch(`/vacancies/${vacancyId}/close`, {
