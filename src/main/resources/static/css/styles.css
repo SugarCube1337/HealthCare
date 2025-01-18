@@ -119,14 +119,14 @@ button:hover {
     margin: 25px 0;
     font-size: 16px;
     text-align: left;
-    background-color: #FFF5E1; /* Кремовый фон */
+    background-color: #FFFFFF; /* Кремовый фон */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
 }
 
 .styled-table thead tr {
-    background-color: #6BB9E3; /* Светло-синий */
+    background-color: #77B78D;
     color: #FFFFFF; /* Белый текст */
     text-align: left;
     font-weight: bold;
@@ -134,7 +134,7 @@ button:hover {
 
 .styled-table th, .styled-table td {
     padding: 12px 15px;
-    border: 1px solid #B2E0F7; /* Нежно-голубой */
+    border: 1px solid #f3f3f3; /* Нежно-голубой */
 }
 
 .styled-table tbody tr {

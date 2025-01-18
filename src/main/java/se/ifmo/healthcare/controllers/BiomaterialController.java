@@ -36,6 +36,28 @@ public class BiomaterialController {
         return "biomaterial_information";
     }
 
+    @PostMapping("/update")
+    public String updateBiomaterial(@ModelAttribute BiomaterialDTO biomaterialDTO) {
+        biomaterialService.updateBiomaterial(biomaterialDTO);
+        return "redirect:/biomaterials/all";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateBiomaterialPage(@PathVariable Long id, Model model) {
+        BiomaterialDTO biomaterial = biomaterialService.getBiomaterialById(id);
+        model.addAttribute("biomaterial", biomaterial);
+        return "update_biomaterial";
+    }
+
+
+
+    @PostMapping("/send/{id}")
+    public ResponseEntity<String> sendBiomaterialToNurse(@PathVariable Long id) {
+        biomaterialService.sendToNurse(id);
+        return ResponseEntity.ok("Biomaterial sent to nurse successfully.");
+    }
+
+
 
 
     @GetMapping("/{id}")

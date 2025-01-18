@@ -20,6 +20,22 @@ public class BiomaterialService {
         biomaterialDAO.save(biomaterial);
     }
 
+    public void updateBiomaterial(BiomaterialDTO biomaterialDTO) {
+        Biomaterial biomaterial = biomaterialDAO.findById(biomaterialDTO.getBiomaterialId());
+
+        biomaterial.setType(biomaterialDTO.getType());
+        biomaterial.setStatus(biomaterialDTO.getStatus());
+        biomaterial.setStoragePeriodHours(biomaterialDTO.getStoragePeriodHours());
+
+        biomaterialDAO.save(biomaterial);
+    }
+    public void sendToNurse(Long id) {
+        Biomaterial biomaterial = biomaterialDAO.findById(id);
+        biomaterial.setStatus("Sent to Nurse");
+        biomaterialDAO.save(biomaterial);
+    }
+
+
     public BiomaterialDTO getBiomaterialById(Long id) {
         return BiomaterialMapper.toDTO(biomaterialDAO.findById(id));
     }

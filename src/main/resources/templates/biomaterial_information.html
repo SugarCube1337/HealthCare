@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biomaterials</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <title>Biomaterial Information</title>
+    <link rel="stylesheet" th:href="@{/css/tables.css}">
 </head>
 <body>
 <header>
-    <h1>Biomaterials</h1>
-    <p>Information about collected biomaterials and their current status.</p>
+    <h1>Biomaterial Information</h1>
+    <p>Details about collected biomaterials and their current statuses.</p>
 </header>
 
 <div class="container">
-    <table border="1" class="styled-table">
+    <table class="styled-table">
         <thead>
         <tr>
             <th>ID</th>
@@ -23,6 +23,7 @@
             <th>Delivery Date</th>
             <th>Status</th>
             <th>Storage Period (hours)</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -34,6 +35,18 @@
             <td th:text="${biomaterial.deliveryDate}"></td>
             <td th:text="${biomaterial.status}"></td>
             <td th:text="${biomaterial.storagePeriodHours}"></td>
+            <td>
+                <!-- Кнопка Update -->
+                <button class="button update-btn"
+                        th:onclick="|window.location.href='@{/biomaterials/update/{id}(id=${biomaterial.biomaterialId})}'|">
+                    Update
+                </button>
+
+                <!-- Кнопка Send to Nurse -->
+                <button class="button send-btn" th:onclick="sendToNurse(${biomaterial.biomaterialId})">
+                    Send to Nurse
+                </button>
+            </td>
         </tr>
         </tbody>
     </table>
@@ -42,5 +55,31 @@
 <footer>
     <p align="center">&copy; 2025 HealthCare System. All rights reserved.</p>
 </footer>
+
+<script>
+    // Функция для отправки биоматериала сестре-хозяйке
+    function sendToNurse(biomaterialId) {
+        if (confirm('Are you sure you want to send this biomaterial to the nurse?')) {
+            fetch(`/biomaterials/send/${biomaterialId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Biomaterial sent to nurse successfully.');
+                        location.reload(); // Обновляем страницу
+                    } else {
+                        alert('Failed to send biomaterial.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while sending biomaterial.');
+                });
+        }
+    }
+</script>
 </body>
 </html>
