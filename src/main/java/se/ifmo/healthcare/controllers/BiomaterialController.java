@@ -2,25 +2,41 @@ package se.ifmo.healthcare.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import se.ifmo.healthcare.dao.BiomaterialDAO;
 import se.ifmo.healthcare.dto.BiomaterialDTO;
 import se.ifmo.healthcare.dto.DiagnosisDTO;
+import se.ifmo.healthcare.models.Biomaterial;
 import se.ifmo.healthcare.services.BiomaterialService;
 import se.ifmo.healthcare.services.DiagnosisService;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/biomaterials")
 public class BiomaterialController {
     @Autowired
     private BiomaterialService biomaterialService;
+
+    @Autowired
+    private BiomaterialDAO biomaterialDAO;
 
     @PostMapping
     public ResponseEntity<String> createBiomaterial(@RequestBody BiomaterialDTO dto) {
         biomaterialService.createBiomaterial(dto);
         return ResponseEntity.ok("Biomaterial created successfully");
     }
+
+    @GetMapping("/all")
+    public String showPage(Model model){
+        List<BiomaterialDTO> biomaterials = biomaterialService.getAllBiomaterials();
+        model.addAttribute("biomaterials", biomaterials);
+        return "biomaterial_information";
+    }
+
+
 
     @GetMapping("/{id}")
     public ResponseEntity<BiomaterialDTO> getBiomaterialById(@PathVariable Long id) {

@@ -26,15 +26,14 @@
     <p><strong>Qualification:</strong> <span th:text="${staffMember.qualification}">PhD in Genetics</span></p>
   </section>
 
-<!--  <section class="user-account">-->
-<!--    <h2>User Account</h2>-->
-<!--    <p><strong>Username:</strong> <span th:text="${staffMember.user.username}">johndoe</span></p>-->
-<!--    <p><strong>Role:</strong> <span th:text="${staffMember.user.role}">Admin</span></p>-->
-<!--  </section>-->
-
   <div class="actions">
     <button th:onclick="|window.location.href='@{/staff-members/edit/{id}(id=${staffMember.id})}'|">Edit Profile</button>
     <button th:onclick="|window.location.href='@{/staff-members/delete/{id}(id=${staffMember.id})}'|">Delete Profile</button>
+    <button th:if="${staffMember.position == 'Geneticist'}"
+            th:onclick="|window.location.href='@{/biomaterials/all}'|">
+      Information about biomaterials
+    </button>
+
   </div>
 </div>
 </body>

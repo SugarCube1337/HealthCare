@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biomaterials</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <h1>Biomaterials</h1>
+    <p>Information about collected biomaterials and their current status.</p>
+</header>
+
+<div class="container">
+    <table border="1" class="styled-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Patient ID</th>
+            <th>Collection Date</th>
+            <th>Type</th>
+            <th>Delivery Date</th>
+            <th>Status</th>
+            <th>Storage Period (hours)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="biomaterial : ${biomaterials}">
+            <td th:text="${biomaterial.biomaterialId}"></td>
+            <td th:text="${biomaterial.patient.id}"></td>
+            <td th:text="${biomaterial.collectionDate}"></td>
+            <td th:text="${biomaterial.type}"></td>
+            <td th:text="${biomaterial.deliveryDate}"></td>
+            <td th:text="${biomaterial.status}"></td>
+            <td th:text="${biomaterial.storagePeriodHours}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer>
+    <p align="center">&copy; 2025 HealthCare System. All rights reserved.</p>
+</footer>
+</body>
+</html>
