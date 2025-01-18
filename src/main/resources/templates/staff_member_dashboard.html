@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Staff Registration Dashboard</title>
-  <link rel="stylesheet" th:href="@{/css/staff-dashboard.css}">
+  <link rel="stylesheet" th:href="@{/css/patient-dashboard.css}">
 </head>
 <body>
 <div class="dashboard-container">
@@ -24,14 +24,13 @@
     <h2>Staff Information</h2>
     <p><strong>Position:</strong> <span th:text="${staffMember.position}">Admin</span></p>
     <p><strong>Qualification:</strong> <span th:text="${staffMember.qualification}">PhD in Genetics</span></p>
-    <p><strong>Research ID:</strong> <span th:text="${staffMember.researchId}">123456</span></p>
   </section>
 
-  <section class="user-account">
-    <h2>User Account</h2>
-    <p><strong>Username:</strong> <span th:text="${staffMember.user.username}">johndoe</span></p>
-    <p><strong>Role:</strong> <span th:text="${staffMember.user.role}">Admin</span></p>
-  </section>
+<!--  <section class="user-account">-->
+<!--    <h2>User Account</h2>-->
+<!--    <p><strong>Username:</strong> <span th:text="${staffMember.user.username}">johndoe</span></p>-->
+<!--    <p><strong>Role:</strong> <span th:text="${staffMember.user.role}">Admin</span></p>-->
+<!--  </section>-->
 
   <div class="actions">
     <button th:onclick="|window.location.href='@{/staff-members/edit/{id}(id=${staffMember.id})}'|">Edit Profile</button>

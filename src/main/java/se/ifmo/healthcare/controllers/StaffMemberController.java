@@ -45,7 +45,6 @@ public class StaffMemberController {
 
         Claims claims = jwtUtil.extractAllClaims(token);
         System.out.println(claims);
-        String username = claims.get("username", String.class);
         String role = claims.get("role", String.class);
         Long id = claims.get("id", Long.class);
 
@@ -60,7 +59,7 @@ public class StaffMemberController {
             return "redirect:/auth/login";
         }
 
-        model.addAttribute("staff_member", StaffMemberDTO);
+        model.addAttribute("staffMember", StaffMemberDTO);
 
 
         return "staff_member_dashboard";

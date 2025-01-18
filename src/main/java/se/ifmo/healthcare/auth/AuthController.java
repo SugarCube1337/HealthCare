@@ -54,7 +54,7 @@ public class AuthController {
             System.out.println("PATIENT");
             return "redirect:/patients/patient_dashboard";
         } else if (userDAO.findById(userId).getRole().equals("STAFF")){
-            return "redirect:/staff_dashboard";
+            return "redirect:/staff-members/staff_dashboard";
         } else{
             return "redirect:/vacancies";
         }
