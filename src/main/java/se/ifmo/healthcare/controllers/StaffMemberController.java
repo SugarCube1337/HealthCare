@@ -49,12 +49,13 @@ public class StaffMemberController {
         Long id = claims.get("id", Long.class);
 
         System.out.println(id);
-
+        System.out.println(role);
         if (!"STAFF".equals(role)) {
             return "redirect:/auth/login";
         }
 
-        StaffMemberDTO StaffMemberDTO = staffMemberService.getStaffMemberById(id);
+        StaffMemberDTO StaffMemberDTO = staffMemberService.getStaffMemberByPersonId(id);
+        System.out.println(StaffMemberDTO);
         if (StaffMemberDTO == null) {
             return "redirect:/auth/login";
         }

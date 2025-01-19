@@ -36,6 +36,16 @@ public class BiomaterialController {
         return "biomaterial_information";
     }
 
+    @GetMapping("/expired")
+    public String showExpired(Model model){
+        List<BiomaterialDTO> biomaterialDTOS = biomaterialService.getExpiredBiomaterials();
+        model.addAttribute("biomaterials", biomaterialDTOS);
+        return "nurse_dashboard";
+    }
+
+
+
+
     @PostMapping("/update")
     public String updateBiomaterial(@ModelAttribute BiomaterialDTO biomaterialDTO) {
         biomaterialService.updateBiomaterial(biomaterialDTO);

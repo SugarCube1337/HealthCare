@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nurse dashboard</title>
+</head>
+<body>
+<header>
+    <h1>Expired biomaterials</h1>
+    <p>Details about expired biomaterials.</p>
+</header>
+<div class="container">
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Patient ID</th>
+            <th>Collection Date</th>
+            <th>Type</th>
+            <th>Delivery Date</th>
+            <th>Status</th>
+            <th>Storage Period (hours)</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="biomaterial : ${biomaterials}">
+            <td th:text="${biomaterial.biomaterialId}"></td>
+            <td th:text="${biomaterial.patient.id}"></td>
+            <td th:text="${biomaterial.collectionDate}"></td>
+            <td th:text="${biomaterial.type}"></td>
+            <td th:text="${biomaterial.deliveryDate}"></td>
+            <td th:text="${biomaterial.status}"></td>
+            <td th:text="${biomaterial.storagePeriodHours}"></td>
+            <td>
+                <button class="button utilize-btn"
+                        th:onclick="|window.location.href='@{/biomaterials/delete/{id}(id=${biomaterial.biomaterialId})}'|">
+                    Update
+                </button>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer>
+    <p align="center">&copy; 2025 HealthCare System. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

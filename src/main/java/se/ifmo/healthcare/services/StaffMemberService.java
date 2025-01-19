@@ -4,8 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.ifmo.healthcare.dao.StaffMemberDAO;
 import se.ifmo.healthcare.dao.UserDAO;
+import se.ifmo.healthcare.dto.PatientDTO;
 import se.ifmo.healthcare.dto.StaffMemberDTO;
+import se.ifmo.healthcare.mappers.PatientMapper;
 import se.ifmo.healthcare.mappers.StaffMemberMapper;
+import se.ifmo.healthcare.models.Patient;
 import se.ifmo.healthcare.models.StaffMember;
 import se.ifmo.healthcare.models.User;
 
@@ -36,6 +39,8 @@ public class StaffMemberService {
         return staffMember == null ? null : StaffMemberMapper.toDTO(staffMember);
     }
 
+
+
     public List<StaffMemberDTO> getAllStaffMembers() {
         return staffMemberDAO.findAll().stream()
                 .map(StaffMemberMapper::toDTO)
@@ -49,5 +54,10 @@ public class StaffMemberService {
 
     public void deleteStaffMember(Long id) {
         staffMemberDAO.delete(id);
+    }
+
+    public StaffMemberDTO getStaffMemberByPersonId(Long id){
+        StaffMember staffMember = staffMemberDAO.findStaffMemberByPersonId(id);
+        return staffMember == null ? null : StaffMemberMapper.toDTO(staffMember);
     }
 }

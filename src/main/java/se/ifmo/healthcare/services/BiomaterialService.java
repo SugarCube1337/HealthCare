@@ -46,6 +46,10 @@ public class BiomaterialService {
                 .collect(Collectors.toList());
     }
 
+    public List<BiomaterialDTO> getExpiredBiomaterials(){
+        return biomaterialDAO.findExpired().stream().map(BiomaterialMapper::toDTO).collect(Collectors.toList());
+    }
+
     public void deleteBiomaterial(Long id) {
         biomaterialDAO.delete(id);
     }

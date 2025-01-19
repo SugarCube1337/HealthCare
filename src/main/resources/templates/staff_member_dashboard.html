@@ -33,6 +33,10 @@
             th:onclick="|window.location.href='@{/biomaterials/all}'|">
       Information about biomaterials
     </button>
+    <button th:if="${staffMember.position == 'Nurse'}"
+            th:onclick="|window.location.href='@{/biomaterials/all}'|">
+      Information about biomaterials
+    </button>
 
   </div>
 </div>
