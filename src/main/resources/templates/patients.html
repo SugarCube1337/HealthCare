@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patients</title>
+    <link rel="stylesheet" th:href="@{/css/tables.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<header>
+    <h1>Information about patients</h1>
+</header>
+<div class="container">
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Person ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>BirthDate</th>
+            <th>Contact Info</th>
+            <th>Gender</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="patient : ${patients}">
+            <td th:text="${patient.id}"></td>
+            <td th:text="${patient.person.id}"></td>
+            <td th:text="${patient.person.name}"></td>
+            <td th:text="${patient.person.surname}"></td>
+            <td th:text="${patient.person.birthDate}"></td>
+            <td th:text="${patient.person.contactInfo}"></td>
+            <td th:text="${patient.person.gender}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer>
+    <p align="center">&copy; 2025 HealthCare System. All rights reserved.</p>
+</footer>
+
+
+</body>
+</html>

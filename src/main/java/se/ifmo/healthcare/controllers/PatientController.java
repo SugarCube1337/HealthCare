@@ -34,6 +34,13 @@ public class PatientController {
         patientService.createPatient(patientDTO);
         return "redirect:/auth/login";
     }
+
+    @GetMapping("/show")
+    public String show(Model model){
+        List<PatientDTO> patientDTOS = patientService.getAllPatients();
+        model.addAttribute("patients", patientDTOS);
+        return "patients";
+    }
     @GetMapping("/patient_dashboard")
     public String showPatientDashboard(Model model, HttpSession session) {
         String token = (String) session.getAttribute("jwtToken");

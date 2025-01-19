@@ -38,6 +38,11 @@
       Information about expired biomaterials
     </button>
 
+    <button th:if="${staffMember.position == 'Treating doctor'}"
+            th:onclick="|window.location.href='@{/patients/show}'|">
+      Medical records
+    </button>
+
   </div>
 </div>
 </body>
