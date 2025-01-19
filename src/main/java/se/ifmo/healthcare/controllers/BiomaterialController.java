@@ -40,6 +40,7 @@ public class BiomaterialController {
     public String showExpired(Model model){
         List<BiomaterialDTO> biomaterialDTOS = biomaterialService.getExpiredBiomaterials();
         model.addAttribute("biomaterials", biomaterialDTOS);
+        System.out.println(biomaterialDTOS);
         return "nurse_dashboard";
     }
 

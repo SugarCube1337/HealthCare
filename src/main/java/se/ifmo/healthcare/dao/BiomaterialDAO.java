@@ -27,8 +27,11 @@ public class BiomaterialDAO {
         return entityManager.createQuery("SELECT d FROM Biomaterial d", Biomaterial.class).getResultList();
     }
 
-    public List<Biomaterial> findExpired(){
-        return entityManager.createQuery("SELECT d FROM Biomaterial d WHERE status = 'Sent to nurse'", Biomaterial.class).getResultList();
+    @Transactional
+    public List<Biomaterial> findExpired() {
+        return entityManager.createQuery(
+                "SELECT d FROM Biomaterial d WHERE TRIM(d.status) = 'Sent to Nurse'", Biomaterial.class
+        ).getResultList();
     }
 
     @Transactional
