@@ -111,8 +111,7 @@ header p {
     text-align: center;
     cursor: pointer;
     width: 150px; /* Фиксированная ширина для всех кнопок */
-    height: 50px; /* Фиксированная высота для всех кнопок */
-    line-height: 40px; /* Центрирование текста по вертикали */
+     /* Фиксированная высота для всех кнопок */
 }
 
 .button:hover {
@@ -123,11 +122,17 @@ header p {
     background-color: #77B78D; /* Светло-зеленый для Update */
     margin-right: 15px; /* Расстояние между кнопками */
     margin-bottom: 15px;
+    height: 50px;
+    line-height: 40px; /* Центрирование текста по вертикали */
+
 
 }
 
 .send-btn {
     background-color: #77B78D; /* Светло-зеленый для Send to Nurse */
+    height: 50px;
+    line-height: 40px; /* Центрирование текста по вертикали */
+
 }
 
 /* Устранение дополнительных отступов после последней кнопки */
@@ -140,4 +145,14 @@ footer {
     margin-top: 40px;
     font-size: 14px;
     color: #8B5B29; /* Теплый коричневый */
+}
+
+.apply-button{
+    background-color: #77B78D;
+    height: 200px;
+    width: 150px;
+    line-height: 1; /* Устанавливает расстояние между строками */
+    padding: 5px 10px; /* Настраивает внутренние отступы для кнопки */
+    font-size: 14px; /* Убедитесь, что размер шрифта комфортный */
+    text-align: center; /* Центрирует текст на кнопке */
 }

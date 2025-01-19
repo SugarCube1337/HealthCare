@@ -22,6 +22,7 @@
             <th>BirthDate</th>
             <th>Contact Info</th>
             <th>Gender</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -33,6 +34,14 @@
             <td th:text="${patient.person.birthDate}"></td>
             <td th:text="${patient.person.contactInfo}"></td>
             <td th:text="${patient.person.gender}"></td>
+            <td>
+
+                <button class="button apply"
+                        th:onclick="'apply(' + ${patient.id} + ')'">
+                    Apply for a research referral
+                </button>
+
+            </td>
         </tr>
         </tbody>
     </table>
@@ -41,7 +50,39 @@
 <footer>
     <p align="center">&copy; 2025 HealthCare System. All rights reserved.</p>
 </footer>
+<script>
+    function apply(patientId) {
+        if (confirm('Are you sure you want to apply for a research referral for this patient?')) {
+            const researchRegistration = {
+                researchId: 1, // Укажите ID исследования (можно получить динамически)
+                patientId: patientId,
+                date: new Date().toISOString().split('T')[0], // Текущая дата
+                timeStart: "09:00:00", // Пример времени начала
+                timeEnd: "10:00:00"   // Пример времени окончания
+            };
 
+            fetch('/research-registrations', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(researchRegistration)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Research registration created successfully.');
+                        location.reload();
+                    } else {
+                        alert('Failed to create research registration.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while creating the research registration.');
+                });
+        }
+    }
+</script>
 
 </body>
 </html>
