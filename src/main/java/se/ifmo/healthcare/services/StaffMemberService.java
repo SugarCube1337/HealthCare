@@ -26,8 +26,6 @@ public class StaffMemberService {
     @Autowired
     private UserDAO userDAO;
 
-    @Autowired
-    private CandidateDAO candidateDAO;
 
     public void createStaffMember(StaffMemberDTO staffMemberDTO) {
         StaffMember staffMember = StaffMemberMapper.toEntity(staffMemberDTO);
@@ -39,16 +37,6 @@ public class StaffMemberService {
         staffMemberDAO.save(staffMember);
     }
 
-    public void hireCandidate(Long candidateId, Long vacancyId) {
-        Candidate candidate = candidateDAO.findById(candidateId);
-        if (candidate != null) {
-            StaffMember staffMember = new StaffMember();
-            staffMember.setPerson(candidate.getPerson());
-            staffMember.setPosition(candidate.getWantPosition());
-            staffMember.setQualification(candidate.getQualification());
-            staffMemberDAO.save(staffMember);
-        }
-    }
 
     public StaffMemberDTO getStaffMemberById(Long id) {
         StaffMember staffMember = staffMemberDAO.findById(id);

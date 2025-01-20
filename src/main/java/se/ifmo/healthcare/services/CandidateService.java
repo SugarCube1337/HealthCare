@@ -36,17 +36,6 @@ public class CandidateService {
     }
 
 
-
-    public List<CandidateDTO> getCandidatesByVacancyId(Long vacancyId) {
-        return candidateDAO.findCandidatesByVacancyId(vacancyId).stream()
-                .map(CandidateMapper::toDTO)
-                .collect(Collectors.toList());
-    }
-
-    public void rejectCandidate(Long candidateId) {
-        Candidate candidate = candidateDAO.findById(candidateId);
-    }
-
     public CandidateDTO getCandidateById(Long id) {
         Candidate candidate = candidateDAO.findById(id);
         return candidate != null ? CandidateMapper.toDTO(candidate) : null;

@@ -39,10 +39,5 @@ public class CandidateDAO {
             entityManager.remove(candidate);
         }
     }
-    public List<Candidate> findCandidatesByVacancyId(Long vacancyId) {
-        return entityManager.createQuery(
-                        "SELECT c FROM Candidate c JOIN c.vacancies v WHERE v.id = :vacancyId", Candidate.class)
-                .setParameter("vacancyId", vacancyId)
-                .getResultList();
-    }
+
 }

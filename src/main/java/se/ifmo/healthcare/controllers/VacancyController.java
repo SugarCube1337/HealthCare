@@ -46,28 +46,6 @@ public class VacancyController {
         return "redirect:/vacancies";
     }
 
-    // Страница откликов на вакансию
-    @GetMapping("/{id}/candidates")
-    public String showCandidatesForVacancy(@PathVariable Long id, Model model) {
-        List<CandidateDTO> candidates = candidateService.getCandidatesByVacancyId(id);
-        model.addAttribute("candidates", candidates);
-        model.addAttribute("vacancyId", id);
-        return "candidates_for_vacancy";
-    }
-
-    // Принять кандидата на работу
-    @PostMapping("/{vacancyId}/candidates/{candidateId}/accept")
-    public String acceptCandidate(@PathVariable Long vacancyId, @PathVariable Long candidateId) {
-        staffMemberService.hireCandidate(candidateId, vacancyId);
-        return "redirect:/vacancies/" + vacancyId + "/candidates";
-    }
-
-    // Отклонить кандидата
-    @PostMapping("/{vacancyId}/candidates/{candidateId}/reject")
-    public String rejectCandidate(@PathVariable Long vacancyId, @PathVariable Long candidateId) {
-        candidateService.rejectCandidate(candidateId);
-        return "redirect:/vacancies/" + vacancyId + "/candidates";
-    }
 
     @GetMapping
     public String getAllVacancies(Model model, HttpSession session) {

@@ -22,7 +22,6 @@ public class VacancyDAO {
                 .executeUpdate();
     }
 
-
     @Transactional
     public void save(Vacancy vacancy) {
         entityManager.persist(vacancy);
