@@ -37,7 +37,9 @@
             <td>
 
                 <button class="button apply"
-                        th:onclick="'apply(' + ${patient.id} + ')'">
+                th:onclick="|window.location.href='@{/research-registrations/apply/{id}(id=${patient.id})}'|">
+<!--                        th:onclick="'apply(' + ${patient.id} + ')'">-->
+
                     Apply for a research referral
                 </button>
 

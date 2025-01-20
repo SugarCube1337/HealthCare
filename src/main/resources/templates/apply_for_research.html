@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Apply for research referral</title>
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+</head>
+<body>
+<div class="container">
+
+    <h1>Apply for a research</h1>
+    <form th:action="@{/research-registrations}" th:object="${researchRegistration}" method="post">
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" th:field="*{date}" required /><br/>
+
+        <label for="timeStart">Time Start:</label>
+        <input type="time" id="timeStart" th:field="*{timeStart}" required /><br/>
+
+        <label for="timeEnd">Time End:</label>
+        <input type="time" id="timeEnd" th:field="*{timeEnd}" required /><br/>
+
+        <button type="submit">Apply for research</button>
+    </form>
+</div>
+</body>
+</html>

@@ -2,20 +2,34 @@ package se.ifmo.healthcare.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import se.ifmo.healthcare.dto.PatientDTO;
 import se.ifmo.healthcare.dto.ResearchRegistrationDTO;
+import se.ifmo.healthcare.services.PatientService;
 import se.ifmo.healthcare.services.ResearchRegistrationService;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/research-registrations")
 public class ResearchRegistrationController {
     @Autowired
     private ResearchRegistrationService researchRegistrationService;
 
+    @Autowired
+    private PatientService patientService;
+
+    @GetMapping("/apply/{id}")
+    public String showRegisterPage(Model model, @PathVariable Long id) {
+        model.addAttribute("patient", patientService.getPatientById(id));
+        model.addAttribute("researchRegistration", new ResearchRegistrationDTO());
+        return "apply_for_research";
+    }
+
     @PostMapping
-    public ResponseEntity<String> createResearchRegistration(@RequestBody ResearchRegistrationDTO dto) {
+    public ResponseEntity<String> createResearchRegistration(@ModelAttribute ResearchRegistrationDTO dto) {
         researchRegistrationService.createResearchRegistration(dto);
         return ResponseEntity.ok("ResearchRegistration created successfully");
     }
