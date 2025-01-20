@@ -47,6 +47,7 @@ CREATE TABLE Biomaterial (
                              Delivery_Date DATE NOT NULL,
                              Status VARCHAR(50) NOT NULL,
                              Storage_Period_Hours INTEGER NOT NULL,
+                             Storage_Expiry_Date DATE,
                              FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID)
 );
 
@@ -65,7 +66,7 @@ CREATE TABLE Work_With_Biomaterials (
                                         Work_With_Biomaterial_ID BIGSERIAL PRIMARY KEY,
                                         Staff_Member_ID BIGSERIAL NOT NULL,
                                         Biomaterial_ID BIGSERIAL NOT NULL,
-                                        Begin_Time DATE NOT NULL,
+                                        Begin_Time TIMESTAMP NOT NULL,
                                         FOREIGN KEY (Staff_Member_ID) REFERENCES Staff_Member(Staff_Member_ID),
                                         FOREIGN KEY (Biomaterial_ID) REFERENCES Biomaterial(Biomaterial_ID)
 );

@@ -23,6 +23,7 @@
             <th>Delivery Date</th>
             <th>Status</th>
             <th>Storage Period (hours)</th>
+            <th>Expiry Date</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -35,6 +36,7 @@
             <td th:text="${biomaterial.deliveryDate}"></td>
             <td th:text="${biomaterial.status}"></td>
             <td th:text="${biomaterial.storagePeriodHours}"></td>
+            <td th:text="${biomaterial.storage_expiry_date}"></td>
             <td>
                 <!-- Кнопка Update -->
                 <button class="button update-btn"

@@ -15,6 +15,7 @@ public class BiomaterialMapper {
         dto.setStatus(biomaterial.getStatus());
         dto.setStoragePeriodHours(biomaterial.getStoragePeriodHours());
         dto.setType(biomaterial.getType());
+        dto.setStorage_expiry_date(biomaterial.getStorage_expiry_date());
         return dto;
     }
 
@@ -27,6 +28,7 @@ public class BiomaterialMapper {
         biomaterial.setStoragePeriodHours(dto.getStoragePeriodHours());
         biomaterial.setType(dto.getType());
         biomaterial.setPatient(PatientMapper.toEntity(dto.getPatient()));
+        biomaterial.setStorage_expiry_date((dto.getStorage_expiry_date()));
         return biomaterial;
     }
 }

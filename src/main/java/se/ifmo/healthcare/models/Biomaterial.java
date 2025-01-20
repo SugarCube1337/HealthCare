@@ -34,4 +34,7 @@ public class Biomaterial {
     @Column(nullable = false)
     private Integer storagePeriodHours;
 
+    @Column(nullable = false)
+    private LocalDate storage_expiry_date;
+
 }

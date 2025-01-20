@@ -12,16 +12,19 @@ RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
--- Создание триггера, который будет срабатывать после вставки в таблицу Biomaterial
-CREATE TRIGGER biomaterial_expiry_date_trigger
-    AFTER INSERT ON Biomaterial
+-- Удаляем старый триггер, если существует
+DROP TRIGGER IF EXISTS set_biomaterial_expiry_date ON Biomaterial;
+
+-- Создаем триггер, который будет срабатывать перед вставкой записи
+CREATE TRIGGER set_biomaterial_expiry_date
+    BEFORE INSERT ON Biomaterial
     FOR EACH ROW
-    EXECUTE FUNCTION set_biomaterial_expiry_date();
+EXECUTE FUNCTION set_biomaterial_expiry_date();
 
 
 -- Вставим новый биоматериал, чтобы проверить триггер
 INSERT INTO Biomaterial (Patient_ID, Collection_Date, Type, Delivery_Date, Status, Storage_Period_Hours)
-VALUES (23, '2025-01-16', 'Blood', '2025-01-16', 'Pending', 48);
+VALUES (1, '2025-01-16', 'Blood', '2025-01-16', 'Pending', 48);
 
 -- Проверим результат
 SELECT * FROM Biomaterial WHERE Patient_ID = 1;
