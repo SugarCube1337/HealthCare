@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Vacancy</title>
+    <link rel="stylesheet" th:href="@{/css/register_vacancy.css}">
+</head>
+<body>
+<div class="register-vacancy-container">
+    <h1>Register New Vacancy</h1>
+    <form th:action="@{/vacancies/register_vacancy}" method="post">
+        <div class="form-group">
+            <label for="position">Position:</label>
+            <input type="text" id="position" name="position" required>
+        </div>
+        <div class="form-group">
+            <label for="requirements">Requirements:</label>
+            <textarea id="requirements" name="requirements" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="openingDate">Opening Date:</label>
+            <input type="date" id="openingDate" name="openingDate" required>
+        </div>
+        <div class="form-group">
+            <label for="minSalary">Minimum Salary:</label>
+            <input type="number" id="minSalary" name="minSalary" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="typeOfEmployment">Type of Employment:</label>
+            <select id="typeOfEmployment" name="typeOfEmployment" required>
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Internship">Internship</option>
+                <option value="Contract">Contract</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <select id="status" name="status" required>
+                <option value="Open">Open</option>
+                <option value="Closed">Closed</option>
+            </select>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="submit-button">Create Vacancy</button>
+            <button type="button" class="cancel-button" onclick="location.href='/vacancies'">Cancel</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

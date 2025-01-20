@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candidates</title>
+  <link rel="stylesheet" th:href="@{/css/candidates.css}">
+</head>
+<body>
+<div class="candidates-container">
+  <h1>Candidates for Vacancy</h1>
+  <ul>
+    <li th:each="candidate : ${candidates}">
+      <div class="candidate">
+        <p><strong>Name:</strong> <span th:text="${candidate.name}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${candidate.email}"></span></p>
+        <p><strong>Status:</strong> <span th:text="${candidate.status}"></span></p>
+
+        <!-- Кнопки для изменения статуса кандидата -->
+        <form th:action="@{/vacancies/{vacancyId}/candidates/{candidateId}/accept(vacancyId=${vacancyId}, candidateId=${candidate.id})}" method="post">
+          <button type="submit" class="accept-button">Accept</button>
+        </form>
+        <form th:action="@{/vacancies/{vacancyId}/candidates/{candidateId}/reject(vacancyId=${vacancyId}, candidateId=${candidate.id})}" method="post">
+          <button type="submit" class="reject-button">Reject</button>
+        </form>
+      </div>
+      <hr/>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

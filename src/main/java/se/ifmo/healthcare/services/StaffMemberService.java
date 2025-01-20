@@ -8,9 +8,11 @@ import se.ifmo.healthcare.dto.PatientDTO;
 import se.ifmo.healthcare.dto.StaffMemberDTO;
 import se.ifmo.healthcare.mappers.PatientMapper;
 import se.ifmo.healthcare.mappers.StaffMemberMapper;
+import se.ifmo.healthcare.models.Candidate;
 import se.ifmo.healthcare.models.Patient;
 import se.ifmo.healthcare.models.StaffMember;
 import se.ifmo.healthcare.models.User;
+import se.ifmo.healthcare.dao.CandidateDAO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +26,9 @@ public class StaffMemberService {
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    private CandidateDAO candidateDAO;
+
     public void createStaffMember(StaffMemberDTO staffMemberDTO) {
         StaffMember staffMember = StaffMemberMapper.toEntity(staffMemberDTO);
         User user = new User();
@@ -32,6 +37,17 @@ public class StaffMemberService {
         user.setRole("STAFF");
         userDAO.save(user);
         staffMemberDAO.save(staffMember);
+    }
+
+    public void hireCandidate(Long candidateId, Long vacancyId) {
+        Candidate candidate = candidateDAO.findById(candidateId);
+        if (candidate != null) {
+            StaffMember staffMember = new StaffMember();
+            staffMember.setPerson(candidate.getPerson());
+            staffMember.setPosition(candidate.getWantPosition());
+            staffMember.setQualification(candidate.getQualification());
+            staffMemberDAO.save(staffMember);
+        }
     }
 
     public StaffMemberDTO getStaffMemberById(Long id) {

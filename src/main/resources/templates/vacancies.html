@@ -1,64 +1,92 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vacancies</title>
-  <link rel="stylesheet" th:href="@{/css/vacancies.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacancies</title>
+    <link rel="stylesheet" th:href="@{/css/vacancies.css}">
 </head>
 <body>
 <div class="vacancies-container">
-  <h1>Available Vacancies</h1>
+    <h1>Available Vacancies</h1>
 
-  <ul>
-    <li th:each="vacancy : ${vacancies}">
-      <div class="vacancy">
-        <h2 th:text="${vacancy.position}"></h2>
-        <p><strong>Requirements:</strong> <span th:text="${vacancy.requirements}"></span></p>
-        <p><strong>Opening Date:</strong> <span th:text="${vacancy.openingDate}"></span></p>
-        <p><strong>Salary:</strong> <span th:text="${vacancy.minSalary}"></span></p>
-        <p><strong>Status:</strong> <span th:text="${vacancy.status}"></span></p>
-        <p><strong>Employment Type:</strong> <span th:text="${vacancy.typeOfEmployment}"></span></p>
+    <ul>
+        <li th:each="vacancy : ${vacancies}">
+            <div class="vacancy">
+                <h2 th:text="${vacancy.position}"></h2>
+                <p><strong>Requirements:</strong> <span th:text="${vacancy.requirements}"></span></p>
+                <p><strong>Opening Date:</strong> <span th:text="${vacancy.openingDate}"></span></p>
+                <p><strong>Salary:</strong> <span th:text="${vacancy.minSalary}"></span></p>
+                <p><strong>Status:</strong> <span th:text="${vacancy.status}"></span></p>
+                <p><strong>Employment Type:</strong> <span th:text="${vacancy.typeOfEmployment}"></span></p>
 
-        <!-- Кнопка отклика на вакансию -->
-        <button class="apply-button" onclick="applyToVacancy()">Apply</button>
+                <!-- Кнопка отклика на вакансию -->
+                <button th:if="${userRole != 'ADMIN'}"
+                        class="apply-button"
+                        onclick="applyToVacancy()">
+                    Apply
+                </button>
+                <button th:if="${userRole == 'ADMIN'}"
+                        class="delete-button"
+                        th:onclick="'deleteVacancy(' + ${vacancy.id} + ')'">
+                    Delete
+                </button>
 
-        <button th:if="${userRole == 'ADMIN'}"
-                class="delete-button"
-                th:onclick="'deleteVacancy(' + ${vacancy.id} + ')'" >
-          Delete
-        </button>
+                <button th:if="${userRole == 'ADMIN'}"
+                        onclick="location.href='/vacancies/register_vacancy'"
+                        class="register-button">
+                    Register New Vacancy
+                </button>
 
-        <hr/>
-      </div>
-    </li>
-  </ul>
+
+
+                <button th:if="${userRole == 'ADMIN'}"
+                        onclick="location.href='/vacancies/' + ${vacancy.id} + '/candidates'"
+                        class="view-candidates-button">
+                    View Candidates
+                </button>
+
+
+                <hr/>
+            </div>
+        </li>
+    </ul>
 </div>
 </body>
 <script>
-  // Обработчик для кнопки "Apply"
-  function applyToVacancy() {
-    alert("Ваше резюме будет рассмотрено.");
-  }
-
-  // Обработчик для кнопки "Delete"
-  function deleteVacancy(vacancyId) {
-    if (confirm("Are you sure you want to delete this vacancy?")) {
-      fetch(`/vacancies/${vacancyId}/close`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-              .then(response => {
-                if (response.ok) {
-                  alert("Vacancy successfully closed!");
-                  location.reload();
-                } else {
-                  alert("Failed to close vacancy.");
-                }
-              });
+    // Обработчик для кнопки "Apply"
+    function applyToVacancy() {
+        alert("Ваше резюме будет рассмотрено.");
     }
-  }
+
+    // Обработчик для кнопки "Delete"
+    function deleteVacancy(vacancyId) {
+        if (confirm("Are you sure you want to delete this vacancy?")) {
+            fetch(`/vacancies/${vacancyId}/close`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Vacancy successfully closed!");
+                        location.reload();
+                    } else {
+                        alert("Failed to close vacancy.");
+                    }
+                });
+        }
+    }
+
+    function openCreateVacancyModal() {
+        window.location.href = "/vacancies/new";
+    }
+
+    function viewCandidates(vacancyId) {
+        window.location.href = `/vacancies/${vacancyId}/candidates`;
+    }
+
+
 </script>
 </html>
