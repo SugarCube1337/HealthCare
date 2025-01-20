@@ -1,5 +1,6 @@
 package se.ifmo.healthcare.controllers;
 
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import se.ifmo.healthcare.auth.JWTUtil;
 import se.ifmo.healthcare.dto.CandidateDTO;
+import se.ifmo.healthcare.dto.StaffMemberDTO;
 import se.ifmo.healthcare.dto.VacancyDTO;
 import se.ifmo.healthcare.services.VacancyService;
 import se.ifmo.healthcare.services.CandidateService;
@@ -50,11 +52,21 @@ public class VacancyController {
     @GetMapping
     public String getAllVacancies(Model model, HttpSession session) {
         String token = (String) session.getAttribute("jwtToken");
-        if (token != null) {
-            String role = jwtUtil.extractAllClaims(token).get("role", String.class);
-            model.addAttribute("userRole", role);
+        if (token == null) {
+            return "redirect:/auth/login";
         }
+        Claims claims = jwtUtil.extractAllClaims(token);
+        Long personId = claims.get("id", Long.class);
+
+        StaffMemberDTO staffMember = staffMemberService.getStaffMemberByPersonId(personId);
+
+        if (staffMember == null) {
+            return "redirect:/auth/login";
+        }
+
+        model.addAttribute("staffMember", staffMember);
         model.addAttribute("vacancies", vacancyService.getAllVacancies());
+
         return "vacancies";
     }
 

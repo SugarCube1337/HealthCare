@@ -20,30 +20,30 @@
                 <p><strong>Status:</strong> <span th:text="${vacancy.status}"></span></p>
                 <p><strong>Employment Type:</strong> <span th:text="${vacancy.typeOfEmployment}"></span></p>
 
-                <!-- Кнопка отклика на вакансию -->
-                <button th:if="${userRole != 'ADMIN'}"
-                        class="apply-button"
-                        onclick="applyToVacancy()">
-                    Apply
-                </button>
-                <button th:if="${userRole == 'ADMIN'}"
-                        class="delete-button"
-                        th:onclick="'deleteVacancy(' + ${vacancy.id} + ')'">
+                <!-- Доступно только для определённых позиций -->
+                <button th:if="${staffMember.position != 'admin'}"
+                        th:onclick="'deleteVacancy(' + ${vacancy.id} + ')'"
+                        class="delete-button">
                     Delete
                 </button>
 
-                <button th:if="${userRole == 'ADMIN'}"
-                        onclick="location.href='/vacancies/register_vacancy'"
+                <button th:if="${staffMember.position == 'Admin'}"
+                        th:onclick="'window.location.href=\'/vacancies/register_vacancy\''"
                         class="register-button">
                     Register New Vacancy
                 </button>
 
-
-
-                <button th:if="${userRole == 'ADMIN'}"
-                        onclick="location.href='/vacancies/' + ${vacancy.id} + '/candidates'"
+                <button th:if="${staffMember.position == 'admin'}"
+                        th:onclick="'window.location.href=\'/vacancies/' + ${vacancy.id} + '/candidates\''"
                         class="view-candidates-button">
                     View Candidates
+                </button>
+
+                <!-- Доступно для всех -->
+                <button th:if="${staffMember.position != 'admin'}"
+                        class="apply-button"
+                        onclick="applyToVacancy()">
+                    Apply
                 </button>
 
 

@@ -42,7 +42,10 @@
             th:onclick="|window.location.href='@{/patients/show}'|">
       Medical records
     </button>
-
+    <button th:if="${staffMember.position == 'Admin'}"
+            th:onclick="|window.location.href='@{/vacancies}'|">
+      Manage Vacancies
+    </button>
   </div>
 </div>
 </body>
