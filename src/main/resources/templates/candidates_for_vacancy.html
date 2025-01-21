@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candidates for Vacancy</title>
+</head>
+<body>
+<div class="candidates-container">
+  <h1>Candidates for <span th:text="${vacancy.position}"></span></h1>
+  <ul>
+    <li th:each="candidate : ${candidates}">
+      <div class="candidate">
+        <p><strong>Name:</strong> <span th:text="${candidate.person.name}"></span></p>
+        <p><strong>Qualification:</strong> <span th:text="${candidate.qualification}"></span></p>
+        <p><strong>Experience:</strong> <span th:text="${candidate.experience}"></span></p>
+
+        <button th:onclick="'approveCandidate(' + ${candidate.id} + ', ' + ${vacancy.id} + ')'">
+          Approve
+        </button>
+        <button th:onclick="'rejectCandidate(' + ${candidate.id} + ', ' + ${vacancy.id} + ')'">
+          Reject
+        </button>
+      </div>
+    </li>
+  </ul>
+
+</div>
+<script>
+  function approveCandidate(candidateId, vacancyId) {
+    fetch(`/vacancies/${vacancyId}/candidates/${candidateId}/approve`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    }).then(response => response.ok ? location.reload() : alert("Failed to approve candidate."));
+  }
+
+  function rejectCandidate(candidateId, vacancyId) {
+    fetch(`/vacancies/${vacancyId}/candidates/${candidateId}/reject`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    }).then(response => response.ok ? location.reload() : alert("Failed to reject candidate."));
+  }
+</script>
+</body>
+</html>

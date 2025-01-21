@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import se.ifmo.healthcare.dto.CandidateDTO;
+import se.ifmo.healthcare.models.Candidate;
 import se.ifmo.healthcare.services.CandidateService;
 import java.util.List;
 
@@ -15,6 +16,17 @@ public class CandidateController {
 
     @Autowired
     private CandidateService candidateService;
+
+    @PostMapping("/{candidateId}/apply")
+    @ResponseBody
+    public ResponseEntity<?> applyForVacancy(@PathVariable Long candidateId, @RequestParam String wantPosition) {
+        try {
+            candidateService.updateWantPosition(candidateId, wantPosition);
+            return ResponseEntity.ok().body("{\"success\": true}");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("{\"success\": false, \"message\": \"Failed to update position\"}");
+        }
+    }
 
 
     @GetMapping("/register_candidate")

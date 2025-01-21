@@ -8,7 +8,6 @@ import se.ifmo.healthcare.mappers.UserMapper;
 import se.ifmo.healthcare.models.User;
 
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service

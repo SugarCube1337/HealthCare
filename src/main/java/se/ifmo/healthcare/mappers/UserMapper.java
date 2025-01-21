@@ -3,7 +3,6 @@ package se.ifmo.healthcare.mappers;
 import se.ifmo.healthcare.dto.UserDTO;
 import se.ifmo.healthcare.models.User;
 
-import java.time.LocalDate;
 
 public class UserMapper {
     public static UserDTO toDTO(User user) {

@@ -10,13 +10,17 @@
 <div class="vacancies-container">
     <button class="back-button" onclick="goBack()">Back</button>
     <h1>Available Vacancies</h1>
+
+    <!-- Кнопка регистрации новой вакансии доступна только администратору -->
     <div class="add-vacancy-container">
-        <button th:if="${staffMember.position == 'Admin'}"
+        <button th:if="${staffMember != null and staffMember.position.equalsIgnoreCase('admin')}"
                 onclick="window.location.href='/vacancies/register_vacancy'"
                 class="register-button">
             Add New Vacancy
         </button>
     </div>
+
+    <!-- Список вакансий -->
     <ul>
         <li th:each="vacancy : ${vacancies}">
             <div class="vacancy">
@@ -27,44 +31,59 @@
                 <p><strong>Status:</strong> <span th:text="${vacancy.status}"></span></p>
                 <p><strong>Employment Type:</strong> <span th:text="${vacancy.typeOfEmployment}"></span></p>
 
-                <!-- Доступно только для определённых позиций -->
-                <button th:if="${staffMember.position != 'admin'}"
-                        th:onclick="'deleteVacancy(' + ${vacancy.id} + ')'"
-                        class="delete-button">
-                    Delete
-                </button>
-
-
-                <button th:if="${staffMember.position == 'admin'}"
+                <!-- Доступно только для администратора -->
+                <button th:if="${staffMember != null and staffMember.position.equalsIgnoreCase('admin')}"
                         th:onclick="'window.location.href=\'/vacancies/' + ${vacancy.id} + '/candidates\''"
                         class="view-candidates-button">
                     View Candidates
                 </button>
+                <button th:if="${staffMember != null and staffMember.position.equalsIgnoreCase('admin')}"
+                        class="delete-button"
+                        th:data-vacancy-id="${vacancy.id}">
+                    Delete
+                </button>
 
-                <!-- Доступно для всех, кроме админа -->
-                <button th:if="${staffMember.position.toLowerCase() != 'admin'}"
+                <button th:if="${candidate != null}"
                         class="apply-button"
-                        onclick="applyToVacancy()">
+                        th:data-vacancy-id="${vacancy.id}"
+                        th:data-vacancy-position="${vacancy.position}"
+                        th:data-candidate-id="${candidate.id}">
                     Apply
                 </button>
 
 
 
-
-                <hr/>
             </div>
         </li>
     </ul>
 </div>
 </body>
 <script>
-    // Обработчик для кнопки "Apply"
-    function applyToVacancy() {
-        alert("Ваше резюме будет рассмотрено.");
+    // Функция для возврата на предыдущую страницу
+    function goBack() {
+        window.history.back();
     }
+    document.querySelectorAll('.delete-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const vacancyId = this.getAttribute('data-vacancy-id');
+            console.log("Vacancy ID:", vacancyId);  // Логирование для отладки
+            if (!vacancyId) {
+                console.error("Vacancy ID is missing or invalid");
+                alert("Invalid vacancy ID");
+                return;
+            }
 
-    // Обработчик для кнопки "Delete"
+            deleteVacancy(vacancyId);
+        });
+    });
+
     function deleteVacancy(vacancyId) {
+        if (isNaN(vacancyId)) {
+            console.error("Invalid vacancyId:", vacancyId);
+            alert("Invalid vacancy ID");
+            return;
+        }
+
         if (confirm("Are you sure you want to delete this vacancy?")) {
             fetch(`/vacancies/${vacancyId}/close`, {
                 method: 'DELETE',
@@ -75,25 +94,62 @@
                 .then(response => {
                     if (response.ok) {
                         alert("Vacancy successfully closed!");
-                        location.reload();
+                        location.reload(); // Обновляем страницу
                     } else {
                         alert("Failed to close vacancy.");
                     }
+                })
+                .catch(error => {
+                    console.error("Error deleting vacancy:", error);
+                    alert("An error occurred while deleting the vacancy.");
                 });
         }
     }
 
-    function openCreateVacancyModal() {
-        window.location.href = "/vacancies/new";
-    }
+    document.querySelectorAll('.apply-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const vacancyId = this.getAttribute('data-vacancy-id');
+            const vacancyPosition = this.getAttribute('data-vacancy-position');
+            const candidateId = this.getAttribute('data-candidate-id'); // Получаем идентификатор кандидата
 
-    function viewCandidates(vacancyId) {
-        window.location.href = `/vacancies/${vacancyId}/candidates`;
-    }
-    // Функция для возврата на предыдущую страницу
-    function goBack() {
-        window.history.back();
-    }
+            if (!candidateId) {
+                console.error("Candidate ID is missing");
+                alert("Candidate ID is missing");
+                return;
+            }
+
+            // Формируем объект для отправки в теле запроса
+            const requestBody = {
+                wantPosition: vacancyPosition // Передаем только нужную информацию
+            };
+
+            // Подача запроса на обновление wantPosition
+            fetch(`/candidates/${candidateId}/apply`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody) // Отправляем данные в теле запроса
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Your application has been successfully submitted.");
+                    } else {
+                        alert("Failed to submit your application.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error applying for vacancy:", error);
+                    alert("An error occurred while applying for the vacancy.");
+                });
+        });
+    });
+
+
+
+
+
 
 </script>
 </html>

@@ -30,6 +30,10 @@ public class VacancyService {
         return vacancy != null ? VacancyMapper.toDTO(vacancy) : null;
     }
 
+    public Vacancy findById(Long id) {
+        return vacancyDAO.findById(id);
+    }
+
     public List<VacancyDTO> getAllVacancies() {
         return vacancyDAO.findAll()
                 .stream()
