@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import se.ifmo.healthcare.dto.BiomaterialDTO;
 import se.ifmo.healthcare.dto.PatientDTO;
 import se.ifmo.healthcare.dto.ResearchDTO;
 import se.ifmo.healthcare.dto.ResearchRegistrationDTO;
@@ -30,6 +31,7 @@ public class ResearchRegistrationController {
         return "apply_for_research";
     }
 
+
     @PostMapping("/{id}")
     public String createResearchRegistration(@ModelAttribute ResearchRegistrationDTO dto, @PathVariable Long id, RedirectAttributes redirectAttributes) {
         dto.setPatientId(id);
@@ -53,6 +55,13 @@ public class ResearchRegistrationController {
     @GetMapping
     public List<ResearchRegistrationDTO> getAllResearchRegistrations() {
         return researchRegistrationService.getAllResearchRegistrations();
+    }
+
+    @GetMapping("/all")
+    public String showPage(Model model){
+        List<ResearchRegistrationDTO> registrationDTOS = researchRegistrationService.getAllResearchRegistrations();
+        model.addAttribute("registrations", registrationDTOS);
+        return "research_registrations";
     }
 
     @DeleteMapping("/{id}")

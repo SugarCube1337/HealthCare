@@ -31,7 +31,7 @@
 <!--    <button th:onclick="|window.location.href='@{/staff-members/edit/{id}(id=${staffMember.id})}'|">Edit Profile</button>-->
 <!--    <button th:onclick="|window.location.href='@{/staff-members/delete/{id}(id=${staffMember.id})}'|">Delete Profile</button>-->
     <button th:if="${staffMember.position == 'Geneticist'}"
-            th:onclick="|window.location.href='@{/biomaterials/all}'|">
+            th:onclick="|window.location.href='@{/biomaterials/lab}'|">
       Information about biomaterials
     </button>
     <button th:if="${staffMember.position == 'Nurse'}"
@@ -46,6 +46,14 @@
     <button th:if="${staffMember.position == 'Admin'}"
             th:onclick="|window.location.href='@{/vacancies}'|">
       Manage Vacancies
+    </button>
+    <button th:if="${staffMember.position == 'Technician'}"
+            th:onclick="|window.location.href='@{/research-registrations/all}'|">
+      Research Registrations
+    </button>
+    <button th:if="${staffMember.position == 'Technician'}"
+            th:onclick="|window.location.href='@{/biomaterials/all}'|">
+      Sending biomaterials
     </button>
   </div>
 </div>

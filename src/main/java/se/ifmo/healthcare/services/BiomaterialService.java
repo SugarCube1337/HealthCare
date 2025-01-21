@@ -35,6 +35,12 @@ public class BiomaterialService {
         biomaterialDAO.save(biomaterial);
     }
 
+    public void sendToLab(Long id) {
+        Biomaterial biomaterial = biomaterialDAO.findById(id);
+        biomaterial.setStatus("Sent to Lab");
+        biomaterialDAO.save(biomaterial);
+    }
+
 
     public BiomaterialDTO getBiomaterialById(Long id) {
         return BiomaterialMapper.toDTO(biomaterialDAO.findById(id));
@@ -49,6 +55,12 @@ public class BiomaterialService {
     public List<BiomaterialDTO> getExpiredBiomaterials(){
         return biomaterialDAO.findExpired().stream().map(BiomaterialMapper::toDTO).collect(Collectors.toList());
     }
+
+    public List<BiomaterialDTO> getLabBiomaterials(){
+        return biomaterialDAO.findLab().stream().map(BiomaterialMapper::toDTO).collect(Collectors.toList());
+    }
+
+
 
     public void deleteBiomaterial(Long id) {
         biomaterialDAO.delete(id);

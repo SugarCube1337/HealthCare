@@ -33,6 +33,12 @@ public class BiomaterialDAO {
                 "SELECT d FROM Biomaterial d WHERE TRIM(d.status) = 'Sent to Nurse'", Biomaterial.class
         ).getResultList();
     }
+    @Transactional
+    public List<Biomaterial> findLab() {
+        return entityManager.createQuery(
+                "SELECT d FROM Biomaterial d WHERE TRIM(d.status) = 'Sent to Nurse' OR TRIM(d.status) = 'Sent to Lab'", Biomaterial.class
+        ).getResultList();
+    }
 
     @Transactional
     public void delete(Long id) {

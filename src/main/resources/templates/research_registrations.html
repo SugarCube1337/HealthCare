@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Registrations</title>
+    <link rel="stylesheet" th:href="@{/css/tables.css}">
+</head>
+<body>
+<header>
+    <h1>Research registrations</h1>
+    <p>Details about research registrations and patients.</p>
+</header>
+
+<div class="container">
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Patient ID</th>
+            <th>Research ID</th>
+            <th>Date</th>
+            <th>Time Start</th>
+            <th>Time End</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="registration : ${registrations}">
+            <td th:text="${registration.id}"></td>
+            <td th:text="${registration.patientId}"></td>
+            <td th:text="${registration.research.researchId}"></td>
+            <td th:text="${registration.date}"></td>
+            <td th:text="${registration.timeStart}"></td>
+            <td th:text="${registration.timeEnd}"></td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer>
+    <p align="center">&copy; 2025 HealthCare System. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

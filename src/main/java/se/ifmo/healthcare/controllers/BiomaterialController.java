@@ -33,7 +33,7 @@ public class BiomaterialController {
     public String showPage(Model model){
         List<BiomaterialDTO> biomaterials = biomaterialService.getAllBiomaterials();
         model.addAttribute("biomaterials", biomaterials);
-        return "biomaterial_information";
+        return "biomaterials";
     }
 
     @GetMapping("/expired")
@@ -42,6 +42,13 @@ public class BiomaterialController {
         model.addAttribute("biomaterials", biomaterialDTOS);
         System.out.println(biomaterialDTOS);
         return "nurse_dashboard";
+    }
+    @GetMapping("/lab")
+    public String showLab(Model model){
+        List<BiomaterialDTO> biomaterialDTOS = biomaterialService.getLabBiomaterials();
+        model.addAttribute("biomaterials", biomaterialDTOS);
+        System.out.println(biomaterialDTOS);
+        return "biomaterial_information";
     }
 
 
@@ -68,7 +75,11 @@ public class BiomaterialController {
         return ResponseEntity.ok("Biomaterial sent to nurse successfully.");
     }
 
-
+    @PostMapping("/send-to-lab/{id}")
+    public ResponseEntity<String> sendBiomaterialToLab(@PathVariable Long id) {
+        biomaterialService.sendToLab(id);
+        return ResponseEntity.ok("Biomaterial sent to laboratory successfully.");
+    }
 
 
     @GetMapping("/{id}")
@@ -78,8 +89,10 @@ public class BiomaterialController {
     }
 
     @GetMapping
-    public List<BiomaterialDTO> getAllBiomaterials() {
-        return biomaterialService.getAllBiomaterials();
+    public String getAllBiomaterials(Model model) {
+        List<BiomaterialDTO> biomaterials = biomaterialService.getAllBiomaterials();
+        model.addAttribute("biomaterials", biomaterials);
+        return "biomaterials";
     }
 
     @DeleteMapping("/{id}")

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biomaterial Information</title>
+    <link rel="stylesheet" th:href="@{/css/tables.css}">
+</head>
+<body>
+<header>
+    <h1>Biomaterials</h1>
+    <p>Details about collected biomaterials and their current statuses.</p>
+</header>
+
+<div class="container">
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Patient ID</th>
+            <th>Collection Date</th>
+            <th>Type</th>
+            <th>Delivery Date</th>
+            <th>Status</th>
+            <th>Storage Period (hours)</th>
+            <th>Expiry Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="biomaterial : ${biomaterials}">
+            <td th:text="${biomaterial.biomaterialId}"></td>
+            <td th:text="${biomaterial.patient.id}"></td>
+            <td th:text="${biomaterial.collectionDate}"></td>
+            <td th:text="${biomaterial.type}"></td>
+            <td th:text="${biomaterial.deliveryDate}"></td>
+            <td th:text="${biomaterial.status}"></td>
+            <td th:text="${biomaterial.storagePeriodHours}"></td>
+            <td th:text="${biomaterial.storage_expiry_date}"></td>
+            <td>
+                <button class="button update-btn"
+                        th:onclick="|window.location.href='@{/biomaterials/update/{id}(id=${biomaterial.biomaterialId})}'|">
+                    Update
+                </button>
+
+                <button class="button send-btn"
+                        th:onclick="'sendToLaboratory(' + ${biomaterial.biomaterialId} + ')'">
+                    Send to Lab
+                </button>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer>
+    <p align="center">&copy; 2025 HealthCare System. All rights reserved.</p>
+</footer>
+
+<script>
+    function sendToLaboratory(biomaterialId) {
+        if (confirm('Are you sure you want to send this biomaterial to the laboratory?')) {
+            fetch(`/biomaterials/send-to-lab/${biomaterialId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Biomaterial sent to laboratory successfully.');
+                        location.reload();
+                    } else {
+                        alert('Failed to send biomaterial.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while sending biomaterial.');
+                });
+        }
+    }
+</script>
+</body>
+</html>
