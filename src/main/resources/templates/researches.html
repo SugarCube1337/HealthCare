@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Researches</title>
+    <link rel="stylesheet" th:href="@{/css/tables.css}">
+</head>
+<body>
+<div class="container">
+    <table class="styled-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Work With Biomaterials ID</th>
+            <th>Research Method</th>
+            <th>Technology</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="research : ${researches}">
+            <td th:text="${research.researchId}"></td>
+            <td th:text="${research.workWithBiomaterial.workWithBiomaterialId}"></td>
+            <td th:text="${research.researchMethod}"></td>
+            <td th:text="${research.technology}"></td>
+            <td th:text="${research.date}"></td>
+            <td>
+                <button class="button make-report"
+                        th:onclick="|window.location.href='@{/medical-reports/create/{id}(id=${research.researchId})}'|">
+                    Make a report
+                </button>
+
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer>
+    <p align="center">&copy; 2025 HealthCare System. All rights reserved.</p>
+</footer>
+<script>
+    // function makeReport(researchId) {
+    //     if (confirm('Are you sure you want to make report to this research?')) {
+    //         fetch(`/medical-reports/${researchId}`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             }
+    //         })
+    //             .then(response => {
+    //                 if (response.ok) {
+    //                     alert('Report created successfully.');
+    //                     location.reload();
+    //                 } else {
+    //                     alert('Failed to create report.');
+    //                 }
+    //             })
+    //             .catch(error => {
+    //                 console.error('Error:', error);
+    //                 alert('An error occurred while making report.');
+    //             });
+    //     }
+    // }
+</script>
+</body>
+</html>
