@@ -81,10 +81,13 @@ public class MedicalReportController {
 //        return dto != null ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
 //    }
 
-//    @GetMapping
-//    public List<MedicalReportDTO> getAllReports() {
-//        return medicalReportService.getAllReports();
-//    }
+    @GetMapping
+    public String getAllReports(Model model) {
+        List<MedicalReportDTO> medicalReportDTOList = medicalReportService.getAllReports();
+        model.addAttribute("reports", medicalReportDTOList);
+        return "medical_reports";
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteMedicalReport(@PathVariable Long id) {

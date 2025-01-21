@@ -38,6 +38,10 @@
             th:onclick="|window.location.href='@{/researches/all}'|">
       Researches
     </button>
+    <button th:if="${staffMember.position == 'Geneticist' || staffMember.position == 'Treating doctor'}"
+            th:onclick="|window.location.href='@{/medical-reports}'|">
+      Medical reports
+    </button>
     <button th:if="${staffMember.position == 'Nurse'}"
             th:onclick="|window.location.href='@{/biomaterials/expired}'|">
       Information about expired biomaterials
