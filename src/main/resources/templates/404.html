@@ -7,64 +7,94 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f6f9;
-      color: #333;
+      background-color: #FFF5E1; /* Кремовый фон */
+      color: #4B4B4B; /* Темно-серый текст */
       text-align: center;
       padding: 50px;
+      margin: 0;
     }
+
     .container {
       max-width: 600px;
       margin: 0 auto;
-      padding: 20px;
-      background: white;
+      padding: 30px;
+      background: #FFF; /* Белый фон контейнера */
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
+      border-radius: 8px;
     }
+
     h1 {
-      font-size: 4rem;
-      color: #ff4c4c;
+      font-size: 6rem; /* Увеличенный размер */
+      color: #FF4C4C; /* Ярко-красный для акцента */
+      margin-bottom: 20px;
     }
+
     h2 {
       font-size: 1.5rem;
+      color: #8B5B29; /* Теплый коричневый */
       margin-bottom: 20px;
     }
+
     p {
       font-size: 1rem;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      color: #4B4B4B; /* Темно-серый текст */
     }
-    .dna {
-      width: 100px;
-      margin: 20px auto;
+
+    .error-icon {
+      font-size: 100px;
+      color: #FF4C4C; /* Ярко-красный */
+      margin: 20px 0;
     }
+
     .home-link {
       display: inline-block;
       text-decoration: none;
-      color: #fff;
-      background-color: #4caf50;
-      padding: 10px 20px;
+      color: #FFF;
+      background-color: #77B78D; /* Светло-зеленый */
+      padding: 12px 25px;
       border-radius: 5px;
       font-size: 1rem;
+      transition: background-color 0.3s ease;
     }
+
     .home-link:hover {
-      background-color: #45a049;
+      background-color: #6BB9E3; /* Светло-синий при наведении */
     }
+
     footer {
-      margin-top: 20px;
+      margin-top: 40px;
       font-size: 0.9rem;
       color: #777;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      color: #8B5B29; /* Теплый коричневый */
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 4rem; /* Уменьшение размера на мобильных */
+      }
+
+      .container {
+        padding: 15px;
+      }
     }
   </style>
 </head>
 <body>
 <div class="container">
-  <!--<img class="dna" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/DNA_simple2.svg/200px-DNA_simple2.svg.png" alt="DNA Icon"> -->
+  <!-- Иконка ошибки -->
+  <div class="error-icon">⚠️</div>
   <h1>404</h1>
   <h2>Oops! The gene you're looking for doesn't exist.</h2>
   <p>It seems we've hit a mutation in the code. Don't worry, our scientists are working hard to fix it.</p>
   <p>Meanwhile, you can return to the <a href="/" class="home-link">homepage</a> and explore more about our research!</p>
 </div>
 <footer>
-  Powered by the Genetic Research Team 🧬 | No genes were harmed in the making of this error page.
+  <p>Powered by the Genetic Research Team 🧬 | No genes were harmed in the making of this error page.</p>
 </footer>
 </body>
 </html>
