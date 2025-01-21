@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <!-- Иконки -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 <div class="container">
@@ -14,10 +16,18 @@
     </header>
     <main>
         <div class="role-buttons">
-            <a href="/candidates/register_candidate" class="button">Register as Candidate</a>
-            <a href="/patients/register_patient" class="button">Register as Patient</a>
-            <a href="/staff-members/register_staff" class="button">Register as Doctor</a>
-            <a href="/auth/login" class="button">Login</a>
+            <a href="/candidates/register_candidate" class="button">
+                <i class="fas fa-user-graduate"></i> Register as Candidate
+            </a>
+            <a href="/patients/register_patient" class="button">
+                <i class="fas fa-procedures"></i> Register as Patient
+            </a>
+            <a href="/staff-members/register_staff" class="button">
+                <i class="fas fa-user-md"></i> Register as Doctor
+            </a>
+            <a href="/auth/login" class="button">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </a>
         </div>
     </main>
     <footer>

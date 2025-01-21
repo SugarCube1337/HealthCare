@@ -43,7 +43,7 @@
                     Delete
                 </button>
 
-                <button th:if="${candidate != null}"
+                <button th:if="${candidate != null and vacancy.status != 'Closed'}"
                         class="apply-button"
                         th:data-vacancy-id="${vacancy.id}"
                         th:data-vacancy-position="${vacancy.position}"

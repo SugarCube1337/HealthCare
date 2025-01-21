@@ -2,14 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register as Staff Member</title>
-    <link rel="stylesheet" th:href="@{/css/register-staff.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
 </head>
 <body>
-<div class="container">
-    <h1>Register as a Staff Member</h1>
-    <form th:action="@{/staff-members/register_staff}" th:object="${staffMember}" method="post">
+<h1>Register as a Staff Member</h1>
+<form th:action="@{/staff-members/register_staff}" th:object="${staffMember}" method="post">
 
         <!-- Personal Information -->
         <label for="name">Name:</label>
@@ -44,15 +42,13 @@
         <label for="qualification">Qualification:</label>
         <input type="text" id="qualification" th:field="*{qualification}" required/><br/>
 
-         User Account
         <label for="username">Username:</label>
         <input type="text" id="username" th:field="*{user.username}" required/><br/>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" th:field="*{user.password}" required/><br/>
+        <input type="text" id="password" th:field="*{user.password}" required/><br/>
 
         <button type="submit">Register</button>
     </form>
-</div>
 </body>
 </html>

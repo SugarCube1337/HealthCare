@@ -1,56 +1,94 @@
 /* Общий стиль */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     font-size: 16px;
     margin: 0;
     padding: 0;
-    background-color: #F7F7F7; /* Светлый серый фон */
-    color: #4B4B4B; /* Темно-серый текст */
+    background: linear-gradient(to bottom, #FFF5E1, #B2E0F7); /* Градиентный фон */
+    color: #4B4B4B;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Контейнер */
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
     text-align: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
 }
 
 /* Заголовок */
 header h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 36px; /* Увеличен размер */
+    font-weight: 700;
+    color: #8B5B29; /* Теплый коричневый */
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1); /* Легкая тень для текста */
+    letter-spacing: 1px; /* Немного увеличиваем межбуквенный интервал */
+    text-transform: uppercase; /* Все буквы большие */
+    animation: textAnimation 1.5s ease-in-out; /* Анимация */
+}
+
+/* Анимация для текста */
+@keyframes textAnimation {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(10px);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 header p {
     font-size: 18px;
     margin-bottom: 20px;
+    font-style: italic; /* Курсив для подзаголовка */
+    color: #8B5B29; /* Теплый коричневый */
 }
+
 
 /* Кнопки ролей */
 .role-buttons {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 15px;
     margin-top: 30px;
 }
 
 .button {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 15px 30px;
-    font-size: 16px;
+    font-size: 18px;
     text-decoration: none;
-    color: #FFFFFF;
-    border-radius: 8px;
-    background-color: #6BB9E3; /* Светло-синий */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-    text-align: center;
-    min-width: 44px;
-    min-height: 44px;
+    color: #FFF;
+    background-color: #77B78D; /* Светло-зеленый */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    min-width: 180px;
+    min-height: 60px;
+    cursor: pointer;
+}
+
+.button i {
+    margin-right: 10px;
+    font-size: 24px;
 }
 
 .button:hover {
-    background-color: #77B78D; /* Светло-зеленый при наведении */
+    background-color: #6BB9E3; /* Светло-синий при наведении */
+    transform: translateY(-5px);
 }
 
 /* Подвал */
@@ -59,93 +97,16 @@ footer {
     font-size: 14px;
     color: #8B5B29; /* Теплый коричневый */
 }
-/* Форма */
-form {
-    margin: 20px 0;
-    padding: 20px;
-    background-color: #FFF5E1; /* Кремовый фон для формы */
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
-.form-group {
-    margin-bottom: 15px;
-}
+/* Мобильная адаптивность */
+@media (max-width: 768px) {
+    .role-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
 
-label {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 5px;
-    color: #4B4B4B; /* Темно-серый текст */
+    .button {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }
-
-input[type="text"],
-input[type="email"],
-input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #B2E0F7; /* Нежно-голубой */
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="file"]:focus {
-    border-color: #6BB9E3; /* Светло-синий при фокусе */
-    outline: none;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #FFFFFF;
-    background-color: #77B78D; /* Светло-зеленый */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #6BB9E3; /* Светло-синий при наведении */
-}
-
-/* Таблица */
-.styled-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 16px;
-    text-align: left;
-    background-color: #FFFFFF; /* Кремовый фон */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.styled-table thead tr {
-    background-color: #77B78D;
-    color: #FFFFFF; /* Белый текст */
-    text-align: left;
-    font-weight: bold;
-}
-
-.styled-table th, .styled-table td {
-    padding: 12px 15px;
-    border: 1px solid #f3f3f3; /* Нежно-голубой */
-}
-
-.styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
-
-.styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
-.styled-table tbody tr:hover {
-    background-color: #e9f5ff; /* Голубоватый оттенок при наведении */
-}
-

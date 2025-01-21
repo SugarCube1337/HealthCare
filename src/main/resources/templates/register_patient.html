@@ -2,13 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register as Patient</title>
-  <link rel="stylesheet" th:href="@{/css/patient-register.css}">
+  <link rel="stylesheet" th:href="@{/css/register.css}">
 </head>
 <body>
-<div class="container">
-  <h1>Register as a Patient</h1>
+<h1>Register as a Patient</h1>
   <form th:action="@{/patients/register_patient}" th:object="${patient}" method="post">
 
 
@@ -38,6 +36,5 @@
 
     <button type="submit">Register</button>
   </form>
-</div>
 </body>
 </html>
