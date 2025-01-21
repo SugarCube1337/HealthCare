@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Biomaterial Sampling</title>
+    <link rel="stylesheet" th:href="@{/css/apply_for_research.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Sample biomaterial</h1>
+    <form th:action="@{/biomaterials}"
+          th:object="${biomaterial}"
+          method="post">
+
+        <label for="type">Type:</label>
+        <input type="text" id="type" th:field="*{type}" required /><br/>
+
+        <label for="patient">Patient Id:</label>
+        <input type="number" id="patient" th:field="*{patient.id}" required /><br/>
+
+        <label for="storage">Storage Hours:</label>
+        <input type="number" id="storage" th:field="*{storagePeriodHours}" required /><br/>
+
+        <label for="collectionDate">Collection Date:</label>
+        <input type="date" id="collectionDate" th:field="*{collectionDate}" required /><br/>
+
+        <label for="deliveryDate">Delivery Date:</label>
+        <input type="date" id="deliveryDate" th:field="*{deliveryDate}" required /><br/>
+
+        <label for="status">Status:</label>
+        <input type="text" id="status" th:field="*{status}" required /><br/>
+
+        <button type="submit">Sample biomaterial</button>
+    </form>
+</div>
+<script th:inline="javascript">
+    function handleFormSubmission(event) {
+        event.preventDefault();
+        const form = event.target;
+
+        const data = {
+            type: form.type.value,
+            patient: { id: form.patient.value },
+            storagePeriodHours: form.storage.value,
+            collectionDate: form.collectionDate.value,
+            deliveryDate: form.deliveryDate.value,
+            status: form.status.value
+        };
+
+        fetch(form.action, {
+            method: form.method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Biomaterial sampled successfully!');
+                    window.location.href = '/biomaterials/all';
+                } else {
+                    alert('An error occurred while creating biomaterial.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An unexpected error occurred.');
+            });
+
+        return false;
+    }
+
+</script>
+
+
+</body>
+</html>
