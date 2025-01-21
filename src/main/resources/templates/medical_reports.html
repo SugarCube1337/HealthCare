@@ -23,6 +23,7 @@
         <tbody>
         <tr th:each="report : ${reports}">
             <td th:text="${report.medicalReportId}"></td>
+            <td th:text="${report.research.researchId}"></td>
             <td th:text="${report.staffMember.id}"></td>
             <td th:text="${report.result}"></td>
         </tr>
