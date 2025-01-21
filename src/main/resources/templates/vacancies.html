@@ -110,26 +110,25 @@
         button.addEventListener('click', function() {
             const vacancyId = this.getAttribute('data-vacancy-id');
             const vacancyPosition = this.getAttribute('data-vacancy-position');
-            const candidateId = this.getAttribute('data-candidate-id'); // Получаем идентификатор кандидата
+            const candidateId = this.getAttribute('data-candidate-id');
 
-            if (!candidateId) {
-                console.error("Candidate ID is missing");
-                alert("Candidate ID is missing");
+            if (!candidateId || !vacancyId) {
+                console.error("Candidate ID or Vacancy ID is missing");
+                alert("Candidate ID or Vacancy ID is missing");
                 return;
             }
 
-            // Формируем объект для отправки в теле запроса
             const requestBody = {
-                wantPosition: vacancyPosition // Передаем только нужную информацию
+                wantPosition: vacancyPosition,
+                vacancyId: vacancyId // Передаем ID вакансии
             };
 
-            // Подача запроса на обновление wantPosition
             fetch(`/candidates/${candidateId}/apply`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(requestBody) // Отправляем данные в теле запроса
+                body: JSON.stringify(requestBody)
             })
                 .then(response => response.json())
                 .then(data => {
@@ -145,6 +144,7 @@
                 });
         });
     });
+
 
 
 

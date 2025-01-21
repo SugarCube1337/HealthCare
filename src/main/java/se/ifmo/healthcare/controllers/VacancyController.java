@@ -35,10 +35,16 @@ public class VacancyController {
     @GetMapping("/{vacancyId}/candidates")
     public String getCandidatesForVacancy(@PathVariable Long vacancyId, Model model) {
         Vacancy vacancy = vacancyService.findById(vacancyId);
+        System.out.println("Vacancy ID: " + vacancyId);
+        System.out.println("Vacancy Position: " + vacancy.getPosition());
+
         List<CandidateDTO> candidates = candidateService.getCandidatesForVacancy(vacancyId)
                 .stream()
                 .filter(candidate -> candidate.getWantPosition().equals(vacancy.getPosition()))
                 .collect(Collectors.toList());
+
+        System.out.println("Candidates for Vacancy: " + candidates.size());
+
         model.addAttribute("vacancy", vacancy);
         model.addAttribute("candidates", candidates);
         return "candidates_for_vacancy";

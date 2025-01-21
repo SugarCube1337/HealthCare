@@ -34,6 +34,24 @@ public class CandidateService {
     @Autowired
     private VacancyDAO vacancyDAO;
 
+    public void applyForVacancy(Long candidateId, Long vacancyId, String wantPosition) {
+        Candidate candidate = candidateDAO.findById(candidateId);
+        Vacancy vacancy = vacancyDAO.findById(vacancyId);
+
+        if (candidate == null || vacancy == null) {
+            throw new IllegalArgumentException("Candidate or Vacancy not found");
+        }
+
+        // Устанавливаем желаемую позицию
+        candidate.setWantPosition(wantPosition);
+
+        // Добавляем связь между кандидатом и вакансией
+        candidate.getVacancies().add(vacancy);
+
+        // Сохраняем изменения
+        candidateDAO.save(candidate);
+    }
+
     public void approveCandidate(Long candidateId, Long vacancyId) {
         Candidate candidate = candidateDAO.findById(candidateId);
         Vacancy vacancy = vacancyDAO.findById(vacancyId);
@@ -73,13 +91,22 @@ public class CandidateService {
             return List.of(); // Если вакансии не существует, возвращаем пустой список
         }
 
-        // Получаем всех кандидатов, откликнувшихся на вакансию, и фильтруем по позиции
-        return candidateDAO.findByVacancyId(vacancyId)
-                .stream()
-                .filter(candidate -> candidate.getWantPosition().equals(vacancy.getPosition())) // Фильтрация по позиции
+        System.out.println("Vacancy: " + vacancy);
+
+        // Получаем всех кандидатов
+        List<Candidate> candidates = candidateDAO.findByVacancyId(vacancyId);
+        System.out.println("All candidates for vacancy: " + candidates);
+
+        // Фильтруем по позиции
+        List<CandidateDTO> filteredCandidates = candidates.stream()
+                .filter(candidate -> candidate.getWantPosition().equals(vacancy.getPosition()))
                 .map(CandidateMapper::toDTO)
                 .collect(Collectors.toList());
+
+        System.out.println("Filtered candidates: " + filteredCandidates);
+        return filteredCandidates;
     }
+
 
 
 

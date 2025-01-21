@@ -18,20 +18,30 @@ public class CandidateController {
     @Autowired
     private CandidateService candidateService;
 
+
+
     @PostMapping("/{candidateId}/apply")
     @ResponseBody
-    public ResponseEntity<?> applyForVacancy(@PathVariable Long candidateId, @RequestBody Map<String, String> requestBody) {
+    public ResponseEntity<?> applyForVacancy(
+            @PathVariable Long candidateId,
+            @RequestBody Map<String, String> requestBody
+    ) {
         String wantPosition = requestBody.get("wantPosition");
-        if (wantPosition == null) {
-            return ResponseEntity.badRequest().body("{\"success\": false, \"message\": \"Missing 'wantPosition'\"}");
+        String vacancyIdStr = requestBody.get("vacancyId"); // Получаем ID вакансии из запроса
+
+        if (wantPosition == null || vacancyIdStr == null) {
+            return ResponseEntity.badRequest().body("{\"success\": false, \"message\": \"Missing 'wantPosition' or 'vacancyId'\"}");
         }
+
         try {
-            candidateService.updateWantPosition(candidateId, wantPosition);
+            Long vacancyId = Long.parseLong(vacancyIdStr);
+            candidateService.applyForVacancy(candidateId, vacancyId, wantPosition);
             return ResponseEntity.ok().body("{\"success\": true}");
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("{\"success\": false, \"message\": \"Failed to update position\"}");
+            return ResponseEntity.status(500).body("{\"success\": false, \"message\": \"Failed to apply for vacancy\"}");
         }
     }
+
 
 
 
@@ -44,7 +54,7 @@ public class CandidateController {
     @PostMapping("/register_candidate")
     public String registerCandidate(@ModelAttribute CandidateDTO candidate) {
         candidateService.createCandidate(candidate);
-        return "redirect:/vacancies";
+        return "redirect:/auth/login";
     }
 
     @PostMapping

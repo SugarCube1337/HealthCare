@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -40,7 +41,7 @@ public class Candidate {
             joinColumns = @JoinColumn(name = "candidate_id"),
             inverseJoinColumns = @JoinColumn(name = "vacancy_id")
     )
-    private List<Vacancy> vacancies;
+    private List<Vacancy> vacancies = new ArrayList<>();
 
     public Candidate() {
         this.fillingDate = LocalDate.now();
