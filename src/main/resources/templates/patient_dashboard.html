@@ -40,7 +40,10 @@
   <div class="actions">
     <a th:href="@{/auth/login}" class="button">Log out</a>
 <!--    <a href="/patients/book-appointment" class="button">Book an Appointment</a>-->
-    <a href="/patients/results" class="button">View Test Results</a>
+<!--    <a href="@{/medical-reports/" class="button">View Test Results</a>-->
+    <button th:onclick="|window.location.href='@{/medical-reports/{id}(id=${patient.id})}'|">
+      View test results
+    </button>
   </div>
 </div>
 </body>

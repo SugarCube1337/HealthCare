@@ -23,6 +23,7 @@
         <tbody>
         <tr th:each="report : ${reports}">
             <td th:text="${report.medicalReportId}"></td>
+            <td th:text="${report.research.researchId}"></td>
             <td th:text="${report.staffMember.id}"></td>
             <td th:text="${report.result}"></td>
         </tr>
@@ -33,30 +34,5 @@
 <footer>
     <p align="center">&copy; 2025 HealthCare System. All rights reserved.</p>
 </footer>
-<script>
-    function sendToDoctor(reportId) {
-        if (confirm('Are you sure you want to send this report to the doctor?')) {
-            fetch(`/medical-reports/send/${reportId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(response => {
-                    if (response.ok) {
-                        alert('Report sent to doctor successfully.');
-                        location.reload();
-                    } else {
-                        alert('Failed to send report.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('An error occurred while sending report.');
-                });
-        }
-    }
-
-</script>
 </body>
 </html>

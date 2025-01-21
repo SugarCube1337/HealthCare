@@ -88,6 +88,13 @@ public class MedicalReportController {
         return "medical_reports";
     }
 
+    @GetMapping("/{id}")
+    public String getPatientReport(Model model, @PathVariable Long id) {
+        List<MedicalReportDTO> medicalReportDTOList = medicalReportService.getPatientReport(id);
+        model.addAttribute("reports", medicalReportDTOList);
+        return "medical_reports";
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteMedicalReport(@PathVariable Long id) {

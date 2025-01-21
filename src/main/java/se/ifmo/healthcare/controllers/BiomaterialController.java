@@ -1,13 +1,18 @@
 package se.ifmo.healthcare.controllers;
 
+import io.jsonwebtoken.Claims;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import se.ifmo.healthcare.dao.BiomaterialDAO;
 import se.ifmo.healthcare.dto.BiomaterialDTO;
 import se.ifmo.healthcare.dto.DiagnosisDTO;
+import se.ifmo.healthcare.dto.MedicalReportDTO;
+import se.ifmo.healthcare.dto.StaffMemberDTO;
 import se.ifmo.healthcare.models.Biomaterial;
 import se.ifmo.healthcare.services.BiomaterialService;
 import se.ifmo.healthcare.services.DiagnosisService;
@@ -24,9 +29,23 @@ public class BiomaterialController {
     private BiomaterialDAO biomaterialDAO;
 
     @PostMapping
-    public ResponseEntity<String> createBiomaterial(@RequestBody BiomaterialDTO dto) {
+    public String createBiomaterial(@ModelAttribute BiomaterialDTO dto, RedirectAttributes redirectAttributes) {
         biomaterialService.createBiomaterial(dto);
-        return ResponseEntity.ok("Biomaterial created successfully");
+        System.out.println(dto);
+        try {
+            redirectAttributes.addFlashAttribute("successMessage", "Biomaterial sampled successfully!");
+            return "redirect:/biomaterials/all";
+        } catch (IllegalArgumentException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            return "redirect:/biomaterials/create";
+        }
+    }
+
+    @GetMapping("/create")
+    public String showCreatePage(Model model) {
+        BiomaterialDTO biomaterialDTO = new BiomaterialDTO();
+        model.addAttribute("biomaterial", biomaterialDTO);
+        return "create_biomaterial";
     }
 
     @GetMapping("/all")

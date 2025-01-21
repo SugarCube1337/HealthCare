@@ -56,6 +56,10 @@
       Manage Vacancies
     </button>
     <button th:if="${staffMember.position == 'Technician'}"
+            th:onclick="|window.location.href='@{/biomaterials/create}'|">
+      Biomaterial Sampling
+    </button>
+    <button th:if="${staffMember.position == 'Technician'}"
             th:onclick="|window.location.href='@{/research-registrations/all}'|">
       Research Registrations
     </button>
