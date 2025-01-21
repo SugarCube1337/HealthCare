@@ -18,8 +18,9 @@ public class ResearchRegistration {
     @Column(name = "research_registration_ID")
     private Long id;
 
-    @Column(name = "research_ID", nullable = false)
-    private Long researchId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "research_ID", nullable = false)
+    private Research research;
 
     @Column(name = "patient_ID", nullable = false)
     private Long patientId;

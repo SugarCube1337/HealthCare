@@ -27,8 +27,9 @@
   </section>
 
   <div class="actions">
-    <button th:onclick="|window.location.href='@{/staff-members/edit/{id}(id=${staffMember.id})}'|">Edit Profile</button>
-    <button th:onclick="|window.location.href='@{/staff-members/delete/{id}(id=${staffMember.id})}'|">Delete Profile</button>
+    <a th:href="@{/auth/login}" class="button">Log out</a>
+<!--    <button th:onclick="|window.location.href='@{/staff-members/edit/{id}(id=${staffMember.id})}'|">Edit Profile</button>-->
+<!--    <button th:onclick="|window.location.href='@{/staff-members/delete/{id}(id=${staffMember.id})}'|">Delete Profile</button>-->
     <button th:if="${staffMember.position == 'Geneticist'}"
             th:onclick="|window.location.href='@{/biomaterials/all}'|">
       Information about biomaterials

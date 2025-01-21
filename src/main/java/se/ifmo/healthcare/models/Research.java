@@ -15,7 +15,7 @@ public class Research {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long researchId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "work_with_biomaterial_id", nullable = false)
     private WorkWithBiomaterials workWithBiomaterial;
 

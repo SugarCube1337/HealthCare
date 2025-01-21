@@ -8,7 +8,7 @@ public class ResearchRegistrationMapper {
     public static ResearchRegistrationDTO toDTO(ResearchRegistration researchRegistration) {
         ResearchRegistrationDTO dto = new ResearchRegistrationDTO();
         dto.setId(researchRegistration.getId());
-        dto.setResearchId(researchRegistration.getResearchId());
+        dto.setResearch(ResearchMapper.toDTO(researchRegistration.getResearch()));
         dto.setPatientId(researchRegistration.getPatientId());
         dto.setDate(researchRegistration.getDate());
         dto.setTimeStart(researchRegistration.getTimeStart());
@@ -19,7 +19,7 @@ public class ResearchRegistrationMapper {
     public static ResearchRegistration toEntity(ResearchRegistrationDTO dto) {
         ResearchRegistration researchRegistration = new ResearchRegistration();
         researchRegistration.setId(dto.getId());
-        researchRegistration.setResearchId(dto.getResearchId());
+        researchRegistration.setResearch(ResearchMapper.toEntity(dto.getResearch()));
         researchRegistration.setPatientId(dto.getPatientId());
         researchRegistration.setDate(dto.getDate());
         researchRegistration.setTimeStart(dto.getTimeStart());

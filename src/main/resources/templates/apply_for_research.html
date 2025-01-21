@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Apply for research referral</title>
-    <link rel="stylesheet" th:href="@{/css/register.css}">
+    <title>Apply for Research</title>
+    <link rel="stylesheet" th:href="@{/css/apply_for_research.css}">
 </head>
 <body>
 <div class="container">
+    <h1>Apply for a Research</h1>
+    <form th:action="@{/research-registrations/{id}(id=${patient.id})}"
+          th:object="${researchRegistration}"
+          method="post">
 
-    <h1>Apply for a research</h1>
-    <form th:action="@{/research-registrations}" th:object="${researchRegistration}" method="post">
+        <!-- Скрытое поле для patientId -->
+        <input type="hidden" th:field="*{patientId}" />
 
+        <!-- Поля ResearchRegistration -->
         <label for="date">Date:</label>
         <input type="date" id="date" th:field="*{date}" required /><br/>
 
@@ -20,7 +25,35 @@
         <label for="timeEnd">Time End:</label>
         <input type="time" id="timeEnd" th:field="*{timeEnd}" required /><br/>
 
-        <button type="submit">Apply for research</button>
+        <!-- Поля Research -->
+        <fieldset>
+            <legend>Research Information</legend>
+
+            <label for="researchMethod">Research Method:</label>
+            <input type="text" id="researchMethod" th:field="*{research.researchMethod}" required /><br/>
+
+            <label for="technology">Technology:</label>
+            <input type="text" id="technology" th:field="*{research.technology}" required /><br/>
+
+            <label for="researchDate">Research Date:</label>
+            <input type="date" id="researchDate" th:field="*{research.date}" required /><br/>
+        </fieldset>
+
+        <!-- Поля WorkWithBiomaterials -->
+        <fieldset>
+            <legend>Work With Biomaterials</legend>
+
+            <label for="biomaterialId">Biomaterial ID:</label>
+            <input type="text" id="biomaterialId" th:field="*{research.workWithBiomaterial.biomaterial.biomaterialId}" required /><br/>
+
+            <label for="staffMemberId">Staff Member ID:</label>
+            <input type="text" id="staffMemberId" th:field="*{research.workWithBiomaterial.staffMember.id}" required /><br/>
+
+            <label for="beginTime">Begin Time:</label>
+            <input type="date" id="beginTime" th:field="*{research.workWithBiomaterial.beginTime}" required /><br/>
+        </fieldset>
+
+        <button type="submit">Apply for Research</button>
     </form>
 </div>
 </body>

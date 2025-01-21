@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import se.ifmo.healthcare.dto.PatientDTO;
+import se.ifmo.healthcare.dto.ResearchDTO;
 import se.ifmo.healthcare.dto.ResearchRegistrationDTO;
 import se.ifmo.healthcare.services.PatientService;
 import se.ifmo.healthcare.services.ResearchRegistrationService;
@@ -28,8 +29,9 @@ public class ResearchRegistrationController {
         return "apply_for_research";
     }
 
-    @PostMapping
-    public ResponseEntity<String> createResearchRegistration(@ModelAttribute ResearchRegistrationDTO dto) {
+    @PostMapping("/{id}")
+    public ResponseEntity<String> createResearchRegistration(@ModelAttribute ResearchRegistrationDTO dto, @PathVariable Long id) {
+        dto.setPatientId(id);
         researchRegistrationService.createResearchRegistration(dto);
         return ResponseEntity.ok("ResearchRegistration created successfully");
     }

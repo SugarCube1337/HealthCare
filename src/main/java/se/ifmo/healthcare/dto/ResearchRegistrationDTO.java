@@ -10,7 +10,7 @@ import java.time.LocalTime;
 @Data
 public class ResearchRegistrationDTO {
     private Long id;
-    private Long researchId;
+    private ResearchDTO research;
     private Long patientId;
     private LocalDate date;
     private LocalTime timeStart;
