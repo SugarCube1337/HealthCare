@@ -112,3 +112,52 @@ hr {
 .register-button:hover, .view-candidates-button:hover {
     background-color: #005BB5; /* Темно-синий цвет */
 }
+/* Кнопка регистрации вакансии */
+.register-button {
+    display: inline-block;
+    padding: 14px 24px;
+    background-color: #77B78D; /* Светло-зеленая */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    min-height: 44px; /* Минимальная высота для удобства на сенсорных экранах */
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.register-button:hover {
+    background-color: #6BB9E3; /* Легкий синий при наведении */
+}
+
+.register-button:focus {
+    outline: none;
+}
+
+/* Кнопка "Back" */
+.back-button {
+    display: inline-block;
+    padding: 14px 24px;
+    background-color: #B2E0F7; /* Нежно-голубой */
+    color: #4B4B4B; /* Темно-серый текст */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    margin-top: 10px;
+    min-height: 44px; /* Минимальная высота для удобства на сенсорных экранах */
+    width: auto; /* Кнопка не растягивается на всю ширину */
+}
+
+.back-button:hover {
+    background-color: #A1D1F3; /* Легкий синий при наведении */
+}
+
+.back-button:focus {
+    outline: none;
+}
+

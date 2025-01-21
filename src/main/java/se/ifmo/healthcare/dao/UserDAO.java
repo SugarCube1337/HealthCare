@@ -2,7 +2,6 @@ package se.ifmo.healthcare.dao;
 
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
-import jdk.jfr.Registered;
 import org.springframework.stereotype.Repository;
 import se.ifmo.healthcare.models.User;
 

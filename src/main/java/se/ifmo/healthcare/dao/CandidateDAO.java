@@ -1,10 +1,12 @@
 package se.ifmo.healthcare.dao;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 import se.ifmo.healthcare.models.Candidate;
+import se.ifmo.healthcare.models.StaffMember;
 
 import java.util.List;
 
@@ -39,5 +41,22 @@ public class CandidateDAO {
             entityManager.remove(candidate);
         }
     }
+
+    public List<Candidate> findByVacancyId(Long vacancyId) {
+        return entityManager.createQuery(
+                        "SELECT c FROM Candidate c JOIN c.vacancies v WHERE v.id = :vacancyId", Candidate.class)
+                .setParameter("vacancyId", vacancyId)
+                .getResultList();
+    }
+    public Candidate findCandidateByPersonId(Long id) {
+        try {
+            return entityManager.createQuery("SELECT c FROM Candidate c WHERE c.person.id = :id", Candidate.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
 
 }

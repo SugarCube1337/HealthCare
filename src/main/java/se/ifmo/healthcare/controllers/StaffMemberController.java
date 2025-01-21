@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import se.ifmo.healthcare.auth.JWTUtil;
-import se.ifmo.healthcare.dto.PatientDTO;
 import se.ifmo.healthcare.dto.StaffMemberDTO;
 import se.ifmo.healthcare.services.StaffMemberService;
 

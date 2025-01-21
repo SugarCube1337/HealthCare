@@ -5,7 +5,6 @@ import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
-import se.ifmo.healthcare.models.Patient;
 import se.ifmo.healthcare.models.StaffMember;
 
 import java.util.List;

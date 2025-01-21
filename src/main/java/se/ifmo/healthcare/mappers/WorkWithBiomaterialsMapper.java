@@ -1,8 +1,6 @@
 package se.ifmo.healthcare.mappers;
 
-import se.ifmo.healthcare.dto.BiomaterialDTO;
 import se.ifmo.healthcare.dto.WorkWithBiomaterialsDTO;
-import se.ifmo.healthcare.models.Biomaterial;
 import se.ifmo.healthcare.models.WorkWithBiomaterials;
 
 import java.time.LocalDate;

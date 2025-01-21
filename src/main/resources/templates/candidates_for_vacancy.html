@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candidates for Vacancy</title>
+  <link rel="stylesheet" th:href="@{/css/candidates.css}">
+</head>
+<body>
+<div class="candidates-container">
+  <button class="back-button" onclick="goBack()">Back</button>
+  <h1>Candidates for <span th:text="${vacancy.position}"></span></h1>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Qualification</th>
+      <th>Experience</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="candidate : ${candidates}">
+      <td th:text="${candidate.person.name}"></td>
+      <td th:text="${candidate.person.surname}"></td>
+      <td th:text="${candidate.qualification}"></td>
+      <td th:text="${candidate.experience}"></td>
+      <td>
+        <button class="approve-button"
+                th:data-candidate-id="${candidate.id}"
+                th:data-vacancy-id="${vacancy.id}">Approve</button>
+        <button class="reject-button"
+                th:data-candidate-id="${candidate.id}"
+                th:data-vacancy-id="${vacancy.id}">Reject</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<script>
+  function goBack() {
+    window.history.back();
+  }
+
+  document.querySelectorAll('.approve-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const candidateId = button.getAttribute('data-candidate-id');
+      const vacancyId = button.getAttribute('data-vacancy-id');
+      handleAction(candidateId, vacancyId, 'approve');
+    });
+  });
+
+  document.querySelectorAll('.reject-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const candidateId = button.getAttribute('data-candidate-id');
+      const vacancyId = button.getAttribute('data-vacancy-id');
+      handleAction(candidateId, vacancyId, 'reject');
+    });
+  });
+
+  function handleAction(candidateId, vacancyId, action) {
+    fetch(`/vacancies/${vacancyId}/candidates/${candidateId}/${action}`, {
+      method: 'POST'
+    }).then(response => {
+      if (response.ok) {
+        alert(`${action === 'approve' ? 'Candidate approved' : 'Candidate rejected'} successfully!`);
+        location.reload();
+      } else {
+        alert(`Failed to ${action} candidate.`);
+      }
+    }).catch(error => {
+      console.error(`Error during ${action}:`, error);
+      alert(`An error occurred while trying to ${action} the candidate.`);
+    });
+  }
+</script>
+</body>
+</html>

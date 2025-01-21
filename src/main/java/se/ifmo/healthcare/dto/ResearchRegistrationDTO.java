@@ -2,7 +2,6 @@ package se.ifmo.healthcare.dto;
 
 
 import lombok.Data;
-import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

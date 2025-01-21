@@ -1,7 +1,6 @@
 package se.ifmo.healthcare.mappers;
 
 import se.ifmo.healthcare.dto.ResearchDTO;
-import se.ifmo.healthcare.dto.WorkWithBiomaterialsDTO;
 import se.ifmo.healthcare.models.Research;
 
 

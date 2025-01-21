@@ -1,6 +1,5 @@
 package se.ifmo.healthcare.dto;
 
-import jakarta.jws.soap.SOAPBinding;
 import lombok.Data;
 
 @Data

@@ -4,8 +4,6 @@ package se.ifmo.healthcare.mappers;
 import se.ifmo.healthcare.models.Candidate;
 import se.ifmo.healthcare.dto.CandidateDTO;
 
-import java.time.LocalDate;
-
 public class CandidateMapper {
 
     public static CandidateDTO toDTO(Candidate candidate) {
