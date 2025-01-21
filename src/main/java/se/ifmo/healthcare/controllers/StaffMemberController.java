@@ -36,7 +36,7 @@ public class StaffMemberController {
         return "redirect:/auth/login";
     }
     @GetMapping("/staff_dashboard")
-    public String showPatientDashboard(Model model, HttpSession session) {
+    public String showDashboard(Model model, HttpSession session) {
         String token = (String) session.getAttribute("jwtToken");
         System.out.println(token);
         if (token == null) {

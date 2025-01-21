@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import se.ifmo.healthcare.dto.PatientDTO;
 import se.ifmo.healthcare.dto.ResearchDTO;
 import se.ifmo.healthcare.dto.ResearchRegistrationDTO;
@@ -30,10 +31,17 @@ public class ResearchRegistrationController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<String> createResearchRegistration(@ModelAttribute ResearchRegistrationDTO dto, @PathVariable Long id) {
+    public String createResearchRegistration(@ModelAttribute ResearchRegistrationDTO dto, @PathVariable Long id, RedirectAttributes redirectAttributes) {
         dto.setPatientId(id);
         researchRegistrationService.createResearchRegistration(dto);
-        return ResponseEntity.ok("ResearchRegistration created successfully");
+        try {
+            redirectAttributes.addFlashAttribute("successMessage", "Research registration created successfully!");
+            return "redirect:/staff-members/staff_dashboard";
+        } catch (IllegalArgumentException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            return "redirect:/research-registrations/apply/{id}";
+        }
+        //return ResponseEntity.ok("ResearchRegistration created successfully");
     }
 
     @GetMapping("/{id}")
