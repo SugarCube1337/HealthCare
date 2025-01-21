@@ -8,8 +8,15 @@
 </head>
 <body>
 <div class="vacancies-container">
+    <button class="back-button" onclick="goBack()">Back</button>
     <h1>Available Vacancies</h1>
-
+    <div class="add-vacancy-container">
+        <button th:if="${staffMember.position == 'Admin'}"
+                onclick="window.location.href='/vacancies/register_vacancy'"
+                class="register-button">
+            Add New Vacancy
+        </button>
+    </div>
     <ul>
         <li th:each="vacancy : ${vacancies}">
             <div class="vacancy">
@@ -27,11 +34,6 @@
                     Delete
                 </button>
 
-                <button th:if="${staffMember.position == 'Admin'}"
-                        th:onclick="'window.location.href=\'/vacancies/register_vacancy\''"
-                        class="register-button">
-                    Register New Vacancy
-                </button>
 
                 <button th:if="${staffMember.position == 'admin'}"
                         th:onclick="'window.location.href=\'/vacancies/' + ${vacancy.id} + '/candidates\''"
@@ -39,12 +41,14 @@
                     View Candidates
                 </button>
 
-                <!-- Доступно для всех -->
-                <button th:if="${staffMember.position != 'admin'}"
+                <!-- Доступно для всех, кроме админа -->
+                <button th:if="${staffMember.position.toLowerCase() != 'admin'}"
                         class="apply-button"
                         onclick="applyToVacancy()">
                     Apply
                 </button>
+
+
 
 
                 <hr/>
@@ -86,7 +90,10 @@
     function viewCandidates(vacancyId) {
         window.location.href = `/vacancies/${vacancyId}/candidates`;
     }
-
+    // Функция для возврата на предыдущую страницу
+    function goBack() {
+        window.history.back();
+    }
 
 </script>
 </html>

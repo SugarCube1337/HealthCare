@@ -7,16 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import se.ifmo.healthcare.dao.BiomaterialDAO;
 import se.ifmo.healthcare.dto.BiomaterialDTO;
-import se.ifmo.healthcare.dto.DiagnosisDTO;
-import se.ifmo.healthcare.models.Biomaterial;
 import se.ifmo.healthcare.services.BiomaterialService;
-import se.ifmo.healthcare.services.DiagnosisService;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/biomaterials")
 public class BiomaterialController {
+
     @Autowired
     private BiomaterialService biomaterialService;
 
@@ -30,21 +28,19 @@ public class BiomaterialController {
     }
 
     @GetMapping("/all")
-    public String showPage(Model model){
+    public String showPage(Model model) {
         List<BiomaterialDTO> biomaterials = biomaterialService.getAllBiomaterials();
         model.addAttribute("biomaterials", biomaterials);
         return "biomaterial_information";
     }
 
     @GetMapping("/expired")
-    public String showExpired(Model model){
+    public String showExpired(Model model) {
         List<BiomaterialDTO> biomaterialDTOS = biomaterialService.getExpiredBiomaterials();
         model.addAttribute("biomaterials", biomaterialDTOS);
         System.out.println(biomaterialDTOS);
         return "nurse_dashboard";
     }
-
-
 
 
     @PostMapping("/update")
@@ -61,14 +57,11 @@ public class BiomaterialController {
     }
 
 
-
     @PostMapping("/send/{id}")
     public ResponseEntity<String> sendBiomaterialToNurse(@PathVariable Long id) {
         biomaterialService.sendToNurse(id);
         return ResponseEntity.ok("Biomaterial sent to nurse successfully.");
     }
-
-
 
 
     @GetMapping("/{id}")

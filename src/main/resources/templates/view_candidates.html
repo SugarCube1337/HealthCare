@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candidates for Vacancy</title>
+  <link rel="stylesheet" th:href="@{/css/vacancies.css}">
+</head>
+<body>
+<div class="vacancy-candidates-container">
+  <button class="back-button" onclick="goBack()">Back</button>
+  <h1>Candidates for Vacancy: <span th:text="${vacancy.position}"></span></h1>
+
+  <ul>
+    <li th:each="candidate : ${candidates}">
+      <div class="candidate">
+        <h2 th:text="${candidate.person.fullName}"></h2>
+        <p><strong>Status:</strong> <span th:text="${candidate.status}"></span></p>
+        <p><strong>Position:</strong> <span th:text="${candidate.wantPosition}"></span></p>
+        <p><strong>Experience:</strong> <span th:text="${candidate.experience}"></span> years</p>
+
+        <!-- Кнопки для принятия и отклонения кандидата -->
+        <form th:action="@{/vacancies/{vacancyId}/candidates/{candidateId}/accept(vacancyId=${vacancy.id},candidateId=${candidate.id})}" method="post">
+          <button type="submit" class="accept-button">Accept</button>
+        </form>
+
+        <form th:action="@{/vacancies/{vacancyId}/candidates/{candidateId}/reject(vacancyId=${vacancy.id},candidateId=${candidate.id})}" method="post">
+          <button type="submit" class="reject-button">Reject</button>
+        </form>
+        <hr/>
+      </div>
+    </li>
+  </ul>
+</div>
+</body>
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
+</html>

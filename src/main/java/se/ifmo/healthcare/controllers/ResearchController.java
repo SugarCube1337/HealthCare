@@ -3,9 +3,7 @@ package se.ifmo.healthcare.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import se.ifmo.healthcare.dto.MedicalReportDTO;
 import se.ifmo.healthcare.dto.ResearchDTO;
-import se.ifmo.healthcare.services.MedicalReportService;
 import se.ifmo.healthcare.services.ResearchService;
 
 import java.util.List;

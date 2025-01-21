@@ -8,16 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import se.ifmo.healthcare.auth.JWTUtil;
-import se.ifmo.healthcare.dto.CandidateDTO;
 import se.ifmo.healthcare.dto.StaffMemberDTO;
 import se.ifmo.healthcare.dto.VacancyDTO;
 import se.ifmo.healthcare.services.VacancyService;
 import se.ifmo.healthcare.services.CandidateService;
 import se.ifmo.healthcare.services.StaffMemberService;
-
-
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/vacancies")

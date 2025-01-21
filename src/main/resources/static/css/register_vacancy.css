@@ -1,98 +1,85 @@
+/* Общие стили */
 body {
     font-family: Arial, sans-serif;
+    background-color: #F7F7F7;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
 }
 
+/* Контейнер для формы */
 .register-vacancy-container {
-    max-width: 600px;
-    margin: 50px auto;
+    width: 50%;
+    margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #FFF5E1;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Заголовок */
 h1 {
     text-align: center;
     font-size: 24px;
-    color: #444;
+    color: #4B4B4B;
     margin-bottom: 20px;
 }
 
+/* Группа формы */
 .form-group {
     margin-bottom: 15px;
 }
 
-.form-group label {
+/* Метка */
+label {
+    font-size: 16px;
+    color: #4B4B4B;
     display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #555;
+    margin-top: 10px;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select {
+/* Текстовое поле и input */
+input, textarea, select {
     width: 100%;
     padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #D1E7D1;
+    border-radius: 5px;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
 }
 
-.form-group textarea {
+textarea {
     resize: vertical;
 }
 
-.form-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Кнопки */
+button {
+    background-color: #77B78D; /* Зеленый */
+    color: white;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto; /* Кнопки не растягиваются */
+    font-size: 16px;
+    min-height: 44px;
     margin-top: 20px;
 }
 
-.submit-button,
-.cancel-button {
-    padding: 10px 15px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+button:hover {
+    background-color: #6BB9E3; /* Синий при наведении */
 }
 
-.cancel-button {
-    background-color: #6c757d;
+button:focus {
+    outline: none;
 }
 
-.submit-button:hover {
-    background-color: #0056b3;
+/* Кнопка отмены */
+.cancel-button {
+    background-color: #B2E0F7; /* Нежно-голубой */
+    color: #4B4B4B;
+    margin-top: 10px;
 }
 
 .cancel-button:hover {
-    background-color: #5a6268;
-}
-
-.submit-button:active,
-.cancel-button:active {
-    transform: scale(0.98);
-}
-
-.submit-button:disabled,
-.cancel-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-@media (max-width: 768px) {
-    .form-actions {
-        flex-direction: column;
-        gap: 10px;
-    }
+    background-color: #A1D1F3; /* Легкий синий при наведении */
 }

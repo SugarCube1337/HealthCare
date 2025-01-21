@@ -34,6 +34,7 @@ public class JWTUtil {
                 .parseClaimsJws(token)
                 .getBody();
     }
+
     public Claims extractAllClaims(String token) {
         try {
             return Jwts.parser()

@@ -4,7 +4,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
-import se.ifmo.healthcare.models.Research;
 import se.ifmo.healthcare.models.WorkWithBiomaterials;
 
 import java.util.List;

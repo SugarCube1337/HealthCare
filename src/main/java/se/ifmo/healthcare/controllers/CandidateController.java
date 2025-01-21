@@ -4,14 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import se.ifmo.healthcare.dao.UserDAO;
 import se.ifmo.healthcare.dto.CandidateDTO;
-import se.ifmo.healthcare.models.Candidate;
 import se.ifmo.healthcare.services.CandidateService;
-import se.ifmo.healthcare.services.UserService;
-
 import java.util.List;
 
 @Controller
@@ -21,8 +16,6 @@ public class CandidateController {
     @Autowired
     private CandidateService candidateService;
 
-    @Autowired
-    private UserService userService;
 
     @GetMapping("/register_candidate")
     public String registerCandidatePage(Model model) {
@@ -35,6 +28,7 @@ public class CandidateController {
         candidateService.createCandidate(candidate);
         return "redirect:/vacancies";
     }
+
     @PostMapping
     public ResponseEntity<String> createCandidate(@RequestBody CandidateDTO candidateDTO) {
         candidateService.createCandidate(candidateDTO);

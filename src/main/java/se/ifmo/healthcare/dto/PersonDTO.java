@@ -2,8 +2,6 @@ package se.ifmo.healthcare.dto;
 
 import lombok.Data;
 
-import java.time.LocalDate;
-
 @Data
 public class PersonDTO {
     private Long id;

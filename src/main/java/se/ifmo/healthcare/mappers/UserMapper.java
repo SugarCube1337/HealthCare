@@ -1,8 +1,6 @@
 package se.ifmo.healthcare.mappers;
 
-import se.ifmo.healthcare.dto.PersonDTO;
 import se.ifmo.healthcare.dto.UserDTO;
-import se.ifmo.healthcare.models.Person;
 import se.ifmo.healthcare.models.User;
 
 import java.time.LocalDate;
