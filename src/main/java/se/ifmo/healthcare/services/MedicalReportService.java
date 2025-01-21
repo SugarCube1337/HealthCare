@@ -40,6 +40,12 @@ public class MedicalReportService {
                 .collect(Collectors.toList());
     }
 
+    public List<MedicalReportDTO> getPatientReport(Long id) {
+        return medicalReportDAO.findForPatient(id).stream()
+                .map(MedicalReportMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
     public void deleteMedicalReport(Long id) {
         medicalReportDAO.delete(id);
     }

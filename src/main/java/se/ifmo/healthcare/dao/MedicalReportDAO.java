@@ -26,6 +26,10 @@ public class MedicalReportDAO {
         return entityManager.createQuery("SELECT d FROM MedicalReport d", MedicalReport.class).getResultList();
     }
 
+    public List<MedicalReport> findForPatient(Long id) {
+        return entityManager.createQuery("SELECT d FROM MedicalReport d WHERE d.research.workWithBiomaterial.biomaterial.patient.id = id", MedicalReport.class).getResultList();
+    }
+
     @Transactional
     public void delete(Long id) {
         MedicalReport medicalReport = findById(id);
