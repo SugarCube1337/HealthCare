@@ -1,31 +1,166 @@
 /* Общий стиль */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
     margin: 0;
     padding: 0;
-    background-color: #FFFFFF; /* Кремовый фон */
+    background-color: #F7F7F7; /* Светло-серый фон */
     color: #4B4B4B; /* Темно-серый текст */
+    line-height: 1.6;
 }
 
 /* Контейнер */
 .container {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
     text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #FFF; /* Белый фон */
+    border-radius: 10px;
 }
 
 /* Заголовок */
+header {
+    background-color: #77B78D; /* Светло-зеленый */
+    color: #FFFFFF; /* Белый текст */
+    padding: 20px;
+}
+
 header h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
-    color: #77B78D; /* Светло-синий */
+    font-size: 28px;
+    margin: 0;
 }
 
 header p {
-    font-size: 18px;
-    margin-bottom: 20px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+/* Таблица */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    background-color: #FFF5E1; /* Кремовый фон */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.styled-table thead tr {
+    background-color: #77B78D; /* Светло-зеленый */
+    color: #FFFFFF; /* Белый текст */
+    text-align: left;
+    font-weight: bold;
+}
+
+.styled-table th, .styled-table td {
+    padding: 12px 15px;
+    border: 1px solid #DDDDDD; /* Светло-серый */
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #F9F9F9;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #F1F1F1; /* Лёгкий цвет при наведении */
+}
+
+/* Кнопки */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    background-color: #6BB9E3; /* Светло-синий */
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+    background-color: #5AA9CF; /* Более тёмный синий при наведении */
+    transform: translateY(-2px);
+}
+
+.update-btn, .send-btn {
+    margin: 10px 5px;
+    font-size: 15px;
+}
+
+.update-btn {
+    background-color: #77B78D; /* Светло-зеленый */
+}
+
+.send-btn {
+    background-color: #6BB9E3; /* Светло-синий */
+}
+
+/* Подвал */
+footer {
+    margin-top: 40px;
+    font-size: 14px;
+    text-align: center;
+    color: #8B5B29; /* Теплый коричневый */
+    padding: 10px;
+    background-color: #FFF5E1; /* Кремовый фон */
+    border-radius: 0 0 10px 10px;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .styled-table th, .styled-table td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+/* Общий стиль */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #F7F7F7;
+    color: #4B4B4B;
+}
+
+/* Flexbox для фиксации футера */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Минимальная высота страницы */
+}
+
+/* Основное содержимое */
+.container {
+    flex: 1; /* Занимает оставшееся пространство между хедером и футером */
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
 }
 
 /* Таблица */
@@ -35,124 +170,28 @@ header p {
     margin: 25px 0;
     font-size: 16px;
     text-align: left;
-    background-color: #FFF5E1; /* Кремовый фон */
+    background-color: #FFF5E1;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
 .styled-table thead tr {
-    background-color:#77B78D; /* Светло-синий */
-    color: #FFFFFF; /* Белый текст */
+    background-color: #77B78D;
+    color: #FFFFFF;
     text-align: left;
     font-weight: bold;
 }
 
 .styled-table th, .styled-table td {
     padding: 12px 15px;
-    border: 1px solid black; /* Нежно-голубой */
+    border: 1px solid #DDDDDD;
 }
 
-.styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
-
-.styled-table tbody tr:nth-of-type(even) {
-    background-color: #FFF5E1;
-}
-
-.styled-table tbody tr:hover {
-    background-color: whitesmoke;
-}
-.styled-table thead th:nth-child(1) {
-    width: 100px; /* Ширина для столбца ID */
-}
-
-.styled-table thead th:nth-child(2) {
-    width: 120px; /* Ширина для столбца Patient ID */
-}
-
-.styled-table thead th:nth-child(3) {
-    width: 150px; /* Ширина для столбца Collection Date */
-}
-
-.styled-table thead th:nth-child(4) {
-    width: 150px; /* Ширина для столбца Type */
-}
-
-.styled-table thead th:nth-child(5) {
-    width: 150px; /* Ширина для столбца Delivery Date */
-}
-
-.styled-table thead th:nth-child(6) {
-    width: 100px; /* Ширина для столбца Status */
-}
-
-.styled-table thead th:nth-child(7) {
-    width: 180px; /* Ширина для столбца Storage Period (hours) */
-}
-
-.styled-table thead th:nth-child(8) {
-    width: 400px; /* Ширина для столбца Actions */
-    align-items: center;
-}
-
-
-/* Кнопки */
-.button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    text-decoration: none;
-    color: #FFFFFF;
-    border-radius: 8px;
-    background-color: #77B78D; /* Светло-зеленый */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-    text-align: center;
-    cursor: pointer;
-    width: 150px; /* Фиксированная ширина для всех кнопок */
-     /* Фиксированная высота для всех кнопок */
-}
-
-.button:hover {
-    background-color: #6BB9E3; /* Светло-синий при наведении */
-}
-
-.update-btn {
-    background-color: #77B78D; /* Светло-зеленый для Update */
-    margin-right: 15px; /* Расстояние между кнопками */
-    margin-bottom: 15px;
-    height: 50px;
-    line-height: 40px; /* Центрирование текста по вертикали */
-
-
-}
-
-.send-btn {
-    background-color: #77B78D; /* Светло-зеленый для Send to Nurse */
-    height: 50px;
-    line-height: 40px; /* Центрирование текста по вертикали */
- 
-}
-
-/* Устранение дополнительных отступов после последней кнопки */
-.styled-table td button:last-child {
-    margin-right: 0; /* Убираем отступ у последней кнопки */
-}
-
-/* Подвал */
+/* Футер */
 footer {
-    margin-top: 40px;
-    font-size: 14px;
-    color: #8B5B29; /* Теплый коричневый */
-}
-
-.apply-button{
-    background-color: #77B78D;
-    height: 200px;
-    width: 150px;
-    line-height: 1; /* Устанавливает расстояние между строками */
-    padding: 5px 10px; /* Настраивает внутренние отступы для кнопки */
-    font-size: 14px; /* Убедитесь, что размер шрифта комфортный */
-    text-align: center; /* Центрирует текст на кнопке */
+    background-color: #FFF5E1;
+    color: #8B5B29;
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #DDD;
 }

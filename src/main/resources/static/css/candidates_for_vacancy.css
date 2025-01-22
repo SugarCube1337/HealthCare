@@ -1,0 +1,128 @@
+/* candidates_for_vacancy.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFF5E1; /* Кремовый фон */
+    color: #4B4B4B; /* Темно-серый текст */
+    margin: 0;
+    padding: 0;
+}
+
+.candidates-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #FFF; /* Белый фон контейнера */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #8B5B29; /* Теплый коричневый */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h1 span {
+    font-weight: bold;
+}
+
+button.back-button {
+    background-color: #77B78D; /* Светло-зеленый */
+    color: #FFF;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+button.back-button:hover {
+    background-color: #6BB9E3; /* Светло-синий при наведении */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #CCC; /* Легкая серая граница */
+}
+
+th {
+    background-color: #B2E0F7; /* Светло-синий фон для заголовков */
+    color: #4B4B4B;
+}
+
+td {
+    background-color: #FFF;
+}
+
+tr:nth-child(even) td {
+    background-color: #F7F7F7; /* Легкая серая линия для четных строк */
+}
+
+button.approve-button,
+button.reject-button {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button.approve-button {
+    background-color: #77B78D; /* Светло-зеленый */
+    color: white;
+}
+
+button.reject-button {
+    background-color: #FF4C4C; /* Ярко-красный */
+    color: white;
+}
+
+button.approve-button:hover {
+    background-color: #6BB9E3; /* Светло-синий при наведении */
+}
+
+button.reject-button:hover {
+    background-color: #E23E3E; /* Темнее красный при наведении */
+}
+
+button.approve-button:active {
+    background-color: #6BB9E3; /* Светло-синий при клике */
+}
+
+button.reject-button:active {
+    background-color: #D23D3D; /* Темный красный при клике */
+}
+
+@media (max-width: 768px) {
+    .candidates-container {
+        padding: 20px;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    button.back-button {
+        width: 100%;
+        padding: 12px;
+        font-size: 1.1rem;
+    }
+
+    button.approve-button,
+    button.reject-button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}

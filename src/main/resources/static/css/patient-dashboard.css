@@ -1,68 +1,200 @@
-/* Личный кабинет пациента */
+/* Общие стили */
 .dashboard-container {
-    width: 60%;
-    margin: 0 auto;
+    max-width: 800px;
+    margin: 20px auto;
     padding: 20px;
     background-color: #FFF5E1;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    font-size: 24px;
+/* Заголовки */
+h1, h2 {
+    text-align: center;
     color: #4B4B4B;
+    margin-bottom: 20px;
+}
+
+/* Секция профиля */
+.profile-section {
+    display: flex;
+    align-items: center;
+    background-color: #D1E7D1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+}
+
+.profile-photo {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    background-color: #B2E0F7;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-details p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #4B4B4B;
+}
+
+/* Стили кнопок */
+.actions {
+    margin-top: 20px;
     text-align: center;
 }
 
-.profile-section {
-    margin-top: 30px;
+.button, button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #77B78D;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-h2 {
+.button:hover, button:hover {
+    background-color: #6BB9E3;
+    transform: translateY(-2px);
+}
+
+/* Иконки для кнопок */
+.icon-logout, .icon-reports {
+    margin-right: 10px;
     font-size: 20px;
-    color: #4B4B4B;
 }
 
-p {
+/* Адаптивность */
+@media (max-width: 600px) {
+    .profile-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-photo {
+        margin: 0 auto 20px;
+    }
+}
+.profile-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.profile-photo svg {
+    width: 100px;
+    height: 100px;
+}
+
+.profile-photo p {
+    font-size: 14px;
+    color: #4B4B4B;
+    margin: 0;
+}
+/* Общий контейнер */
+.dashboard-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #FFF5E1;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовки */
+h1, h2 {
+    text-align: center;
+    color: #4B4B4B;
+    margin-bottom: 20px;
+}
+
+/* Профиль */
+.profile-section, .additional-info {
+    margin-bottom: 20px;
+    background-color: #D1E7D1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+}
+
+.profile-photo {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    background-color: #B2E0F7;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-photo svg {
+    width: 100px;
+    height: 100px;
+}
+
+.profile-details p, .additional-info p {
+    margin: 5px 0;
     font-size: 16px;
     color: #4B4B4B;
 }
 
 .actions {
-    margin-top: 30px;
-    text-align: center;
+    display: flex; /* Используем flexbox для выравнивания */
+    flex-wrap: wrap; /* Если кнопки не помещаются в одну строку, они переносятся */
+    justify-content: center; /* Центрируем кнопки по горизонтали */
+    gap: 10px; /* Пробелы между кнопками */
 }
 
-.button {
-    display: inline-block;
+.button, button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 12px 20px;
+    font-size: 16px;
+    line-height: 1.5; /* Устанавливаем одинаковую высоту строки */
     background-color: #77B78D;
     color: white;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    text-decoration: none;
-    margin: 10px;
+    border-radius: 8px;
     cursor: pointer;
-}
-
-.button:hover {
-    background-color: #6BB9E3;
-}
-
-button {
-    display: inline-block;
-    padding: 12px 20px;
-    background-color: #77B78D;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
     text-decoration: none;
-    margin: 10px;
-    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Выравниваем текст в центре */
 }
 
-button:hover {
+.button:hover, button:hover {
     background-color: #6BB9E3;
+    transform: translateY(-2px);
 }

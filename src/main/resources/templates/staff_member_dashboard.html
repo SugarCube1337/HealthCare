@@ -9,27 +9,38 @@
 <body>
 <div class="dashboard-container">
   <header>
-    <h1>Staff Member Dashboard</h1>
+    <h1>Welcome, <span th:text="${staffMember.person.name}">John Doe</span>!</h1>
   </header>
-  <section class="profile-info">
-    <h2>Personal Information</h2>
-    <p><strong>Name:</strong> <span th:text="${staffMember.person.name}">John Doe</span></p>
-    <p><strong>Surname:</strong> <span th:text="${staffMember.person.surname}">Doe</span></p>
-    <p><strong>Birth Date:</strong> <span th:text="${staffMember.person.birthDate}">01/01/1980</span></p>
-    <p><strong>Gender:</strong> <span th:text="${staffMember.person.gender}">Male</span></p>
-    <p><strong>Contact Info:</strong> <span th:text="${staffMember.person.contactInfo}">john.doe@example.com</span></p>
+
+  <section class="profile-section">
+    <div class="profile-header">
+      <div class="profile-photo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#4B4B4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="7" r="4"></circle>
+          <path d="M5.5 21a9.5 9.5 0 0 1 13 0"></path>
+        </svg>
+      </div>
+      <div class="profile-details">
+        <h2>Personal Information</h2>
+        <p><strong>Name:</strong> <span th:text="${staffMember.person.name}">John Doe</span></p>
+        <p><strong>Surname:</strong> <span th:text="${staffMember.person.surname}">Doe</span></p>
+        <p><strong>Birth Date:</strong> <span th:text="${staffMember.person.birthDate}">01/01/1980</span></p>
+        <p><strong>Gender:</strong> <span th:text="${staffMember.person.gender}">Male</span></p>
+        <p><strong>Contact Info:</strong> <span th:text="${staffMember.person.contactInfo}">john.doe@example.com</span></p>
+      </div>
+    </div>
   </section>
 
-  <section class="staff-info">
+  <section class="additional-info">
     <h2>Staff Information</h2>
     <p><strong>Position:</strong> <span th:text="${staffMember.position}">Admin</span></p>
     <p><strong>Qualification:</strong> <span th:text="${staffMember.qualification}">PhD in Genetics</span></p>
   </section>
 
   <div class="actions">
-    <a th:href="@{/auth/login}" class="button">Log out</a>
-<!--    <button th:onclick="|window.location.href='@{/staff-members/edit/{id}(id=${staffMember.id})}'|">Edit Profile</button>-->
-<!--    <button th:onclick="|window.location.href='@{/staff-members/delete/{id}(id=${staffMember.id})}'|">Delete Profile</button>-->
+    <a th:href="@{/auth/login}" class="button">
+      <span class="icon-logout"></span> Log out
+    </a>
     <button th:if="${staffMember.position == 'Geneticist'}"
             th:onclick="|window.location.href='@{/biomaterials/lab}'|">
       Information about biomaterials
@@ -44,12 +55,7 @@
     </button>
     <button th:if="${staffMember.position == 'Nurse'}"
             th:onclick="|window.location.href='@{/biomaterials/expired}'|">
-      Information about expired biomaterials
-    </button>
-
-    <button th:if="${staffMember.position == 'Treating doctor'}"
-            th:onclick="|window.location.href='@{/patients/show}'|">
-      Medical records
+      Expired biomaterials
     </button>
     <button th:if="${staffMember.position == 'Admin'}"
             th:onclick="|window.location.href='@{/vacancies}'|">
@@ -66,6 +72,12 @@
     <button th:if="${staffMember.position == 'Technician'}"
             th:onclick="|window.location.href='@{/biomaterials/all}'|">
       Sending biomaterials
+    </button>
+    </button>
+
+    <button th:if="${staffMember.position == 'Treating doctor'}"
+            th:onclick="|window.location.href='@{/patients/show}'|">
+      Medical records
     </button>
   </div>
 </div>

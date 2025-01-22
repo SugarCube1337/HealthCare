@@ -2,38 +2,70 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #F7F7F7;
+    background-color: #FFF5E1; /* Кремовый фон */
     margin: 0;
     padding: 0;
 }
 
 .vacancies-container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #FFF5E1;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    background-color: #FFF; /* Белый фон контейнера */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 h1 {
-    color: #4B4B4B;
+    color: #8B5B29; /* Теплый коричневый */
     text-align: center;
-    font-size: 24px;
+    font-size: 2rem;
     margin-bottom: 20px;
 }
 
+.add-vacancy-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.register-button {
+    padding: 12px 24px;
+    background-color: #77B78D; /* Светло-зеленая */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    min-height: 44px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.register-button:hover {
+    background-color: #6BB9E3; /* Легкий синий при наведении */
+}
+
+.register-button:focus {
+    outline: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
 .vacancy {
-    background-color: #B2E0F7;
+    background-color: #B2E0F7; /* Светло-синий */
     border-radius: 8px;
-    padding: 15px;
+    padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .vacancy h2 {
-    color: #4B4B4B;
-    font-size: 20px;
+    color: #4B4B4B; /* Темно-серый */
+    font-size: 1.5rem;
     margin-bottom: 10px;
 }
 
@@ -44,95 +76,62 @@ h1 {
 }
 
 strong {
-    color: #8B5B29;
+    color: #8B5B29; /* Теплый коричневый */
 }
 
 hr {
-    border: 1px solid #D1E7D1;
+    border: 1px solid #D1E7D1; /* Светло-зеленая граница */
     margin-top: 15px;
 }
-/* Кнопка отклика */
-.apply-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #77B78D; /* Зеленый цвет */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+
+button.apply-button, button.delete-button, button.view-candidates-button {
+    padding: 12px 24px;
     font-size: 16px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-align: center;
+    margin-top: 10px;
+    min-height: 44px;
     width: 100%;
-}
-
-.apply-button:hover {
-    background-color: #6BB9E3; /* Легкий синий оттенок при наведении */
-}
-
-.apply-button:focus {
-    outline: none;
-}
-/* Кнопка удаления */
-.delete-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #E57373; /* Красный цвет */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
     text-align: center;
-    width: 100%;
-    margin-top: 10px;
-}
-
-.delete-button:hover {
-    background-color: #D32F2F; /* Темно-красный оттенок при наведении */
-}
-
-.delete-button:focus {
-    outline: none;
-}
-.register-button, .view-candidates-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #6BAED6; /* Синий цвет */
-    color: #fff;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
-    width: auto;
 }
 
-.register-button:hover, .view-candidates-button:hover {
-    background-color: #005BB5; /* Темно-синий цвет */
-}
-/* Кнопка регистрации вакансии */
-.register-button {
-    display: inline-block;
-    padding: 14px 24px;
-    background-color: #77B78D; /* Светло-зеленая */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
-    min-height: 44px; /* Минимальная высота для удобства на сенсорных экранах */
-    transition: background-color 0.3s ease;
-    text-align: center;
+button.apply-button {
+    background-color: #77B78D; /* Зеленый */
+    color: white;
 }
 
-.register-button:hover {
+button.apply-button:hover {
     background-color: #6BB9E3; /* Легкий синий при наведении */
 }
 
-.register-button:focus {
+button.apply-button:focus {
+    outline: none;
+}
+
+button.delete-button {
+    background-color: #E57373; /* Красный */
+    color: white;
+}
+
+button.delete-button:hover {
+    background-color: #D32F2F; /* Темно-красный при наведении */
+}
+
+button.delete-button:focus {
+    outline: none;
+}
+
+button.view-candidates-button {
+    background-color: #6BAED6; /* Синий */
+    color: white;
+}
+
+button.view-candidates-button:hover {
+    background-color: #005BB5; /* Темно-синий при наведении */
+}
+
+button.view-candidates-button:focus {
     outline: none;
 }
 
@@ -148,9 +147,8 @@ hr {
     cursor: pointer;
     transition: background-color 0.3s ease;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
     min-height: 44px; /* Минимальная высота для удобства на сенсорных экранах */
-    width: auto; /* Кнопка не растягивается на всю ширину */
 }
 
 .back-button:hover {
@@ -161,3 +159,24 @@ hr {
     outline: none;
 }
 
+@media (max-width: 768px) {
+    .vacancies-container {
+        padding: 20px;
+    }
+
+    button.apply-button, button.delete-button, button.view-candidates-button {
+        width: 100%;
+    }
+
+    button.register-button {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .vacancy h2 {
+        font-size: 1.2rem;
+    }
+}
