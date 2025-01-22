@@ -36,10 +36,17 @@ public class PatientController {
     }
 
     @GetMapping("/show")
-    public String show(Model model){
+    public String showPage(Model model){
         List<PatientDTO> patientDTOS = patientService.getAllPatients();
         model.addAttribute("patients", patientDTOS);
         return "patients";
+    }
+
+    @GetMapping("/showPage")
+    public String show(Model model){
+        List<PatientDTO> patientDTOS = patientService.getAllPatients();
+        model.addAttribute("patients", patientDTOS);
+        return "patient_research_referrals";
     }
     @GetMapping("/patient_dashboard")
     public String showPatientDashboard(Model model, HttpSession session) {

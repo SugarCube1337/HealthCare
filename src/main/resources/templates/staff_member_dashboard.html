@@ -76,9 +76,16 @@
     </button>
 
     <button th:if="${staffMember.position == 'Treating doctor'}"
+            th:onclick="|window.location.href='@{/patients/showPage}'|">
+      Medical records
+    </button>
+
+    <button th:if="${staffMember.position == 'Geneticist' || staffMember.position == 'Technician'}"
             th:onclick="|window.location.href='@{/patients/show}'|">
       Medical records
     </button>
+
+
   </div>
 </div>
 </body>
