@@ -25,19 +25,42 @@
         <label for="timeEnd">Time End:</label>
         <input type="time" id="timeEnd" th:field="*{timeEnd}" required /><br/>
 
-        <!-- Поля Research -->
+        <!-- Research Fields -->
         <fieldset>
             <legend>Research Information</legend>
 
             <label for="researchMethod">Research Method:</label>
-            <input type="text" id="researchMethod" th:field="*{research.researchMethod}" required /><br/>
+            <select id="researchMethod" th:field="*{research.researchMethod}" required>
+                <option value="" disabled selected>Select a method</option>
+                <option value="Cytogenetic studies (karyotyping)">Cytogenetic studies (karyotyping)</option>
+                <option value="FISH technology">FISH technology</option>
+                <option value="Polymerase chain reaction (PCR)">Polymerase chain reaction (PCR)</option>
+                <option value="Sanger sequencing">Sanger sequencing</option>
+                <option value="Fragment analysis">Fragment analysis</option>
+                <option value="Next-generation sequencing (NGS)">Next-generation sequencing (NGS)</option>
+                <option value="Mass spectrometry">Mass spectrometry</option>
+                <option value="Microarray analysis">Microarray analysis</option>
+                <option value="Other methods">Other methods</option>
+            </select><br/>
 
             <label for="technology">Technology:</label>
-            <input type="text" id="technology" th:field="*{research.technology}" required /><br/>
+            <select id="technology" th:field="*{research.technology}" required>
+                <option value="" disabled selected>Select a technology</option>
+                <option value="FISH technology">FISH technology</option>
+                <option value="PCR technology">PCR technology</option>
+                <option value="Sanger sequencing">Sanger sequencing</option>
+                <option value="Next-generation sequencing (NGS)">Next-generation sequencing (NGS)</option>
+                <option value="Mass spectrometry">Mass spectrometry</option>
+                <option value="Microarray analysis">Microarray analysis</option>
+                <option value="Qualitative and quantitative nucleic acid analysis">Qualitative and quantitative nucleic acid analysis</option>
+                <option value="Other technologies">Other technologies</option>
+            </select><br/>
 
             <label for="researchDate">Research Date:</label>
             <input type="date" id="researchDate" th:field="*{research.date}" required /><br/>
         </fieldset>
+
+
 
         <!-- Поля WorkWithBiomaterials -->
         <fieldset>
