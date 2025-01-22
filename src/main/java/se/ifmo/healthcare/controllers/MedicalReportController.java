@@ -91,6 +91,7 @@ public class MedicalReportController {
     @GetMapping("/{id}")
     public String getPatientReport(Model model, @PathVariable Long id) {
         List<MedicalReportDTO> medicalReportDTOList = medicalReportService.getPatientReport(id);
+        System.out.println(id);
         model.addAttribute("reports", medicalReportDTOList);
         return "medical_reports";
     }
